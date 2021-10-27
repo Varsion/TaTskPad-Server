@@ -1,0 +1,12 @@
+config/database.yml
+config/redis.yml
+public/assets
+tmp/*
+log/*
+storage/
+node_modules
+.bundle
+.git/
+.gitignore
+.DS_Store
+README.md
