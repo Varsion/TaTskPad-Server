@@ -1,24 +1,31 @@
-# README
+# TaTsk Pad
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+So, you can imagine here is a logo
 
-Things you may want to cover:
+## What is TaTsk Pad?
 
-* Ruby version
+TaTsk Pad is a teamworks tools, as a member you can have an overview of the project development progress, what everyone is doing and etc.
 
-* System dependencies
+## What are the features of TaTsk?
 
-* Configuration
+- Company
+- Project
+- Sprint
+- Chats
+- Task & Task's points
+- Progress
+- Workload for everyone
+- Calendar
+- TaTsk bot
+- Private deployment
+- Connect Github or Gitlib
+- Mock test
+- ...
 
-* Database creation
+## How TaTsk can help you and you team?
 
-* Database initialization
+Awaiting additions
 
-* How to run the test suite
+## How to use TaTsk better?
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Awaiting additions
