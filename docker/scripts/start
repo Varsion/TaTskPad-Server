@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+cd /home/app
+bundle exec rails assets:precompile
+if [ "$ROLE"x == 'api'x ]; then
+  bundle exec puma config.ru --pidfile /tmp/puma.pid
+elif [ "$ROLE"x == 'worker'x ]; then
+  bundle exec sidekiq -e "$RAILS_ENV"
+else
+  echo "no role specified"
+  exit 1
+fi
