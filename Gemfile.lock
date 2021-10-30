@@ -192,7 +192,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
-  graphql
+  graphql (= 1.12.17)
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
