@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "GraphQL - Test Resolver", type: :request do
   before :each do
-    TestData.create(name: "TestName")
+    @data = TestData.create(name: "TestName")
   end
   let(:query) do
     "
@@ -19,6 +19,14 @@ RSpec.describe "GraphQL - Test Resolver", type: :request do
     post "/graphql",
       params: {query: query, variables: {}}.to_json,
       headers: { "Content-Type" => "application/json" }
-      byebug
+      expect(response.status).to eq(200)
+      expect(response.body).to include_json(
+        data:{
+          hello: {
+            id: @data.id,
+            name: @data.name
+          }
+        }
+      )
   end
 end

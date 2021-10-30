@@ -32,6 +32,8 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "standard"
   gem "rspec-rails", "~> 5.0.0"
+  gem "rspec-json_expectations"
+  gem "nyan-cat-formatter"
 end
 
 group :development do
