@@ -1,8 +1,9 @@
 module Resolvers
-    class TestResolver < BaseResolver
+  class TestResolver < BaseResolver
+    type Types::TestType, null: false
 
-        def resolve
-
-        end
+    def resolve
+      TestData.first
     end
+  end
 end

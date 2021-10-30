@@ -1,8 +1,12 @@
 class TatskpadSchema < GraphQL::Schema
-  class QueryType < Types::Base::Object
-    field :subscriptions, resolver: Resolvers::TestResolver 
+  class Query < Types::Base::Object
+    field :hello, resolver: Resolvers::TestResolver
   end
-  class MutationType < Types::Base::Object
+
+  class Mutation < Types::Base::Object
 
   end
+
+  query Query
+  mutation Mutation
 end
