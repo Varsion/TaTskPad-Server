@@ -17,17 +17,7 @@ ActiveRecord::Schema.define(version: 2022_02_17_124840) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.jsonb "settings", default: {"notifications"=>{"email"=>false}}
-    t.string "invite_code"
-    t.string "email"
-    t.integer "organization_class"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "accounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password"
@@ -38,6 +28,16 @@ ActiveRecord::Schema.define(version: 2022_02_17_124840) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "organization_id"
     t.boolean "is_owner", default: false
+  end
+
+  create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.jsonb "settings", default: {"notifications"=>{"email"=>false}}
+    t.string "invite_code"
+    t.string "email"
+    t.integer "organization_class"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

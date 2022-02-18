@@ -1,6 +1,6 @@
 class AddOrgIdAndRoleToUser < ActiveRecord::Migration[6.1]
   def change
-    add_column :users, :organization_id, :uuid
-    add_column :users, :is_owner, :boolean, default: false
+    add_column :accounts, :organization_id, :uuid
+    add_column :accounts, :is_owner, :boolean, default: false
   end
 end
