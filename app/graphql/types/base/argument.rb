@@ -1,6 +1,6 @@
 module Types
 	module Base
-		class BaseArgument < GraphQL::Schema::Argument
+		class Argument < GraphQL::Schema::Argument
 		end
 	end
 end

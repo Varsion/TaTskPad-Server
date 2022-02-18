@@ -1,10 +1,9 @@
 class TatskpadSchema < GraphQL::Schema
   class Query < Types::Base::Object
-    field :hello, resolver: Resolvers::TestResolver
   end
 
   class Mutation < Types::Base::Object
-
+    field :sign_up, resolver: Mutations::SignUp
   end
 
   query Query
