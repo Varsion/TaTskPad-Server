@@ -36,11 +36,36 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
+  # about factory_bot
+  config.include FactoryBot::Syntax::Methods
+  config.before(:suite) { FactoryBot.find_definitions }
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
 
+
+  # about headers
+  config.include Module.new {
+    def basic_headers
+      {
+        "Content-Type" => "application/json"
+      }
+    end
+
+    def user_headers
+      jwt =
+        JWT.encode(
+          {
+            sub: @user.id,
+            created_at: DateTime.now.strftime("%Q")
+          },
+          Rails.application.credentials.secret_key_base
+        )
+      plain_headers.merge('Authorization': "Bearer #{jwt}")
+    end
+  }
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
