@@ -58,12 +58,12 @@ RSpec.configure do |config|
       jwt =
         JWT.encode(
           {
-            sub: @user.id,
+            acount_id: @account.id,
             created_at: DateTime.now.strftime("%Q")
           },
           Rails.application.credentials.secret_key_base
         )
-      plain_headers.merge('Authorization': "Bearer #{jwt}")
+      plain_headers.merge("Authorization": jwt)
     end
   }
   # You can uncomment this line to turn off ActiveRecord support entirely.
