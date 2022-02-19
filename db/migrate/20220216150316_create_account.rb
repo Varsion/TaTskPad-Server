@@ -1,9 +1,9 @@
-class CreateUser < ActiveRecord::Migration[6.1]
+class CreateAccount < ActiveRecord::Migration[6.1]
   def change
     create_table :accounts, id: :uuid do |t|
       t.string :name
       t.string :email
-      t.string :password
+      t.string :password_digest
       t.text :token
       t.string :email_verify
       t.integer :role
