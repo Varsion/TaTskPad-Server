@@ -70,6 +70,10 @@ GEM
     crass (1.0.6)
     diff-lcs (1.4.4)
     erubi (1.10.0)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -132,6 +136,10 @@ GEM
       thor (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.6)
+    ransack (2.5.0)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -201,12 +209,15 @@ DEPENDENCIES
   awesome_print
   bootsnap (>= 1.4.4)
   byebug
+  factory_bot
+  faker
   graphql (= 1.12.17)
   listen (~> 3.3)
   nyan-cat-formatter
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 6.1.4, >= 6.1.4.1)
+  ransack
   rspec-json_expectations
   rspec-rails (~> 5.0.0)
   spring
