@@ -80,6 +80,7 @@ GEM
     graphql (1.12.17)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    jwt (2.3.0)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -212,6 +213,7 @@ DEPENDENCIES
   factory_bot
   faker
   graphql (= 1.12.17)
+  jwt
   listen (~> 3.3)
   nyan-cat-formatter
   pg (~> 1.1)
