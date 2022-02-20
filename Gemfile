@@ -27,6 +27,8 @@ gem "jwt"
 gem "enumerize"
 gem "graphql", "1.12.17"
 
+gem 'apollo_upload_server', '2.1.0'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
