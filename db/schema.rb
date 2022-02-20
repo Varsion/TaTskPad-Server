@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_20_083901) do
+ActiveRecord::Schema.define(version: 2022_02_20_094146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -26,8 +26,6 @@ ActiveRecord::Schema.define(version: 2022_02_20_083901) do
     t.integer "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.uuid "organization_id"
-    t.boolean "is_owner", default: false
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -56,6 +54,16 @@ ActiveRecord::Schema.define(version: 2022_02_20_083901) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "members", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "account_id", null: false
+    t.uuid "organization_id", null: false
+    t.string "role", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_members_on_account_id"
+    t.index ["organization_id"], name: "index_members_on_organization_id"
   end
 
   create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
