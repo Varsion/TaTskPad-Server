@@ -33,6 +33,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  include ActionDispatch::TestProcess
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -56,14 +57,12 @@ RSpec.configure do |config|
 
     def user_headers
       jwt =
-        JWT.encode(
-          {
-            acount_id: @account.id,
-            created_at: DateTime.now.strftime("%Q")
-          },
-          Rails.application.credentials.secret_key_base
-        )
-      plain_headers.merge("Authorization": jwt)
+        JWT.encode({
+            account_id: @account.id,
+            created_at: DateTime.now.strftime("%Q")},
+            Rails.application.credentials.secret_key_base
+          )
+        basic_headers.merge("Authorization": jwt)
     end
   }
   # You can uncomment this line to turn off ActiveRecord support entirely.
