@@ -16,6 +16,7 @@ module Mutations
         organization_class: input[:organization_class]
       )
       org.upload_logo(input[:logo])
+      org.set_owner(current_account)
       if org.save && org.errors.blank?
         { organization: org }
       else
