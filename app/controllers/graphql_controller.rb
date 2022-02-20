@@ -8,7 +8,10 @@ class GraphqlController < ApplicationController
     variables = prepare_variables(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    context = current_account || {}
+
+    account_data = current_account.presence || {}
+    context = account_data.merge(request: request, response: response)
+
     result = TatskpadSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
 
     render :json => result
@@ -47,15 +50,12 @@ class GraphqlController < ApplicationController
   end
 
   def current_account
-    authenticate_with_http_token do |token, _options|
+    token = request.headers["Authorization"]
+    begin
       data = JWT.decode(token, Rails.application.credentials.secret_key_base)[0]
       account = Account.find_by(id: data["account_id"])
 
-      if account.blank?
-        {account: user, token: token}
-      else
-        {account: nil, token: token}
-      end
+      { account: account, token: token }
     rescue JWT::DecodeError
       {}
     end
