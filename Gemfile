@@ -25,9 +25,10 @@ gem "awesome_print"
 gem "ransack"
 gem "jwt"
 gem "enumerize"
+gem "graphql-ruby"
 gem "graphql", "1.12.17"
 
-gem 'apollo_upload_server', '2.1.0'
+gem "apollo_upload_server", "2.0.0.beta.3"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
