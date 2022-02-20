@@ -5,7 +5,7 @@ class CreateOrganization < ActiveRecord::Migration[6.1]
       t.jsonb :settings, default: { notifications: { email: false } }
       t.string :invite_code
       t.string :email
-      t.integer :organization_class
+      t.string :organization_class
       t.timestamps
     end
   end
