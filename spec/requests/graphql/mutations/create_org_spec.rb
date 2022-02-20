@@ -40,7 +40,6 @@ RSpec.describe "GraphQL - Create Organization Mutations", type: :request do
           }
         }
       }, headers: user_headers
-byebug
       expect(response.status).to eq 200
       expect(Organization.first.owner.account).to eq @account
       expect(response.body).to include_json({
