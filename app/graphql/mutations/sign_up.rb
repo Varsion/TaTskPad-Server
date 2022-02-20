@@ -1,7 +1,7 @@
 module Mutations
   class SignUp < Mutations::BaseMutation
 
-    argument :email, String, required: true
+    argument :email, Types::Base::Email, required: true
     argument :password, String, required: true
     argument :name, String, required: true
 
