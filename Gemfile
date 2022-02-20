@@ -24,6 +24,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 gem "awesome_print"
 gem "ransack"
 gem "jwt"
+gem "enumerize"
 gem "graphql", "1.12.17"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
