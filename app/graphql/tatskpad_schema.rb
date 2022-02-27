@@ -7,6 +7,7 @@ class TatskpadSchema < GraphQL::Schema
     field :sign_in, resolver: Mutations::SignIn
     field :create_org, resolver: Mutations::CreateOrg
     field :verify_account, resolver: Mutations::VerifyAccount
+    field :update_account, resolver: Mutations::UpdateAccount
   end
 
   query Query
