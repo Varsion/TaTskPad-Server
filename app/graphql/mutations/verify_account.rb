@@ -2,7 +2,6 @@ module Mutations
   class VerifyAccount < Mutations::BaseMutation
     argument :verify_code, String, required: true
 
-
     field :account, Types::AccountType, null: true
     field :errors, [Types::Base::ModelError], null: true
 
