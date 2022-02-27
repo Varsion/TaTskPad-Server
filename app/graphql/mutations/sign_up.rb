@@ -11,6 +11,7 @@ module Mutations
     def resolve(input)
       account = Account.new(input)
       if account.save && account.errors.blank?
+        # send verify email
         {
           account: account
         }
