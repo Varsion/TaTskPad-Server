@@ -8,4 +8,12 @@ class Account < ApplicationRecord
   def login
     token = encode(self)
   end
+
+  def verify_account(code)
+    if verify_code == code
+      update(verified: true)
+    else
+      errors.add(:verify_code, "This Verify Code is invalid!")
+    end
+  end
 end

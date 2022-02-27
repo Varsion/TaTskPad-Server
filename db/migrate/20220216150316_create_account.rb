@@ -5,7 +5,8 @@ class CreateAccount < ActiveRecord::Migration[6.1]
       t.string :email
       t.string :password_digest
       t.text :token
-      t.string :email_verify
+      t.string :verify_code
+      t.boolean :verified, default: false
       t.integer :role
       t.timestamps
     end

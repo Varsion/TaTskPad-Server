@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(version: 2022_02_20_094146) do
     t.string "email"
     t.string "password_digest"
     t.text "token"
-    t.string "email_verify"
+    t.string "verify_code"
+    t.boolean "verified", default: false
     t.integer "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
