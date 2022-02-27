@@ -1,5 +1,6 @@
 class TatskpadSchema < GraphQL::Schema
   class Query < Types::Base::Object
+    field :account, resolver: Resolvers::AccountResolver
   end
 
   class Mutation < Types::Base::Object
