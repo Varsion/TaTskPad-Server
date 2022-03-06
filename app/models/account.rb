@@ -23,6 +23,10 @@ class Account < ApplicationRecord
     update(verified: true)
   end
 
+  def verified?
+    verified
+  end
+
   def set_avatar(file)
     content_type = CommonFile.extract_content_type(file.tempfile.path)
     extension = file.original_filename.split(".").last.downcase

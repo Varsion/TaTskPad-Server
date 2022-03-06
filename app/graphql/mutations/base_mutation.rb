@@ -11,6 +11,10 @@ module Mutations
       raise GraphQL::ExecutionError, "unauthenticated" unless current_account
     end
 
+    def check_active_user!
+      raise GraphQL::ExecutionError, "inactivated" unless current_account.verified?
+    end
+
     private
 
     def current_account
