@@ -32,10 +32,6 @@ class Organization < ApplicationRecord
     memberships.create(account: account, role: "owner")
   end
 
-  def the_owner
-    owner.account
-  end
-
   def is_owner?(account)
     owner.account == account
   end
@@ -50,5 +46,20 @@ class Organization < ApplicationRecord
 
   def archive!
     update(status: :archived)
+  end
+
+  def current_membership(account)
+    account.memberships.find_by(organization_id: id)
+  end
+
+  def transfer_to(account)
+    if is_owner?(account)
+      errors.add(:base, "You can't transfer organization to yourself")
+    elsif !is_member?(account)
+      errors.add(:base, "You can't transfer organization to him if he is not a member of the organization")
+    else
+      owner.update(role: "admin")
+      current_membership(account).update(role: "owner")
+    end
   end
 end
