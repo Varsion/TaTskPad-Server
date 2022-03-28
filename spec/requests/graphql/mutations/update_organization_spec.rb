@@ -74,12 +74,14 @@ RSpec.describe "GraphQL - Update Organization Mutations", type: :request do
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {
-        updateOrganization: {
-          errors: [{
-            message: "No permissions"
-          }]
+        updateOrganization: nil
+      },
+      errors: [
+        {
+          message: "No permissions", 
+          path:["updateOrganization"]
         }
-      }
+      ]
     })
   end
 

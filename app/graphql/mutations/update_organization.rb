@@ -14,8 +14,7 @@ module Mutations
       org = Organization.find_by(id: input[:organization_id])
       return { errors: [{ message: "Organization not found" }] } unless org
 
-      return { errors: [{ message: "No permissions" }] } unless org.is_owner?(current_account)
-
+      raise GraphQL::ExecutionError, "No permissions" unless org.is_owner?(current_account)
       org.update(
         name: input[:name], 
         email: input[:email], 
