@@ -5,6 +5,7 @@ class Organization < ApplicationRecord
 
   extend Enumerize
   enumerize :organization_class, in: [:Personal, :Business], default: :Personal
+  enumerize :status, in: [:active, :archived], default: :active
 
   has_one :owner, -> { where(role: "owner") }, class_name: "Membership"
   has_many :admins, -> { where(role: "admin") }, class_name: "Membership"
@@ -45,5 +46,9 @@ class Organization < ApplicationRecord
 
   def is_member?(account)
     accounts.include?(account)
+  end
+
+  def archive!
+    update(status: :archived)
   end
 end
