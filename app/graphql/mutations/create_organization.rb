@@ -1,5 +1,5 @@
 module Mutations
-  class CreateOrg < Mutations::BaseMutation
+  class CreateOrganization < Mutations::BaseMutation
     argument :name, String, required: true
     argument :email, Types::Base::Email, required: true
     argument :organization_class, String, required: true

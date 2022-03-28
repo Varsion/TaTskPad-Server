@@ -9,8 +9,8 @@ RSpec.describe "GraphQL - Create Organization Mutations", type: :request do
 
   let(:query) do
     "
-      mutation CreateOrg($input: CreateOrgInput!) {
-        createOrg(input: $input) {
+      mutation CreateOrganization($input: CreateOrganizationInput!) {
+        createOrganization(input: $input) {
           organization {
             id
             name
@@ -44,7 +44,7 @@ RSpec.describe "GraphQL - Create Organization Mutations", type: :request do
       expect(Organization.first.owner.account).to eq @account
       expect(response.body).to include_json({
         data: {
-          createOrg: {
+          createOrganization: {
             organization: {
               organizationClass: "Personal",
               name: "Test Org",

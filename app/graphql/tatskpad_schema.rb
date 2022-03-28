@@ -4,11 +4,16 @@ class TatskpadSchema < GraphQL::Schema
   end
 
   class Mutation < Types::Base::Object
+    # Sessions related
     field :sign_up, resolver: Mutations::SignUp
     field :sign_in, resolver: Mutations::SignIn
-    field :create_org, resolver: Mutations::CreateOrg
+
+    # Accounts related
     field :verify_account, resolver: Mutations::VerifyAccount
     field :update_account, resolver: Mutations::UpdateAccount
+
+    # Organizations related
+    field :create_organization, resolver: Mutations::CreateOrganization
   end
 
   query Query

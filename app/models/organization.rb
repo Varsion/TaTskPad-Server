@@ -1,7 +1,7 @@
 class Organization < ApplicationRecord
   has_many :members
   has_many :account, through: :members
-  has_one :owner, -> { where(is_owner: true) }, class_name: "Account"
+  has_one :owner, through: :member, source: :account
   has_one_attached :logo
 
   extend Enumerize
