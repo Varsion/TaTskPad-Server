@@ -1,13 +1,12 @@
 class Organization < ApplicationRecord
-  has_many :members
-  has_many :account, through: :members
-  has_one :owner, through: :member, source: :account
+  has_many :memberships
+  has_many :accounts, through: :memberships
   has_one_attached :logo
 
   extend Enumerize
   enumerize :organization_class, in: [:Personal, :Business], default: :Personal
 
-  has_one :owner, -> { where(role: "owner") }, class_name: "Member"
+  has_one :owner, -> { where(role: "owner") }, class_name: "Membership"
 
   def upload_logo(file)
     content_type = CommonFile.extract_content_type(file.tempfile.path)
@@ -28,6 +27,10 @@ class Organization < ApplicationRecord
   end
 
   def set_owner(account)
-    members.create(account: account, role: "owner")
+    memberships.create(account: account, role: "owner")
+  end
+
+  def the_owner
+    owner.account
   end
 end

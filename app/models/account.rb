@@ -2,8 +2,8 @@ class Account < ApplicationRecord
   include JwtHelper
   validates :email, uniqueness: true
   has_secure_password
-  has_many :members
-  has_many :organizations, through: :members
+  has_many :memberships
+  has_many :organizations, through: :memberships
 
   has_one_attached :avatar
 

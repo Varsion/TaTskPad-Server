@@ -57,14 +57,14 @@ ActiveRecord::Schema.define(version: 2022_02_20_094146) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "members", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "account_id", null: false
     t.uuid "organization_id", null: false
     t.string "role", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_members_on_account_id"
-    t.index ["organization_id"], name: "index_members_on_organization_id"
+    t.index ["account_id"], name: "index_memberships_on_account_id"
+    t.index ["organization_id"], name: "index_memberships_on_organization_id"
   end
 
   create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

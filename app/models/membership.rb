@@ -1,4 +1,4 @@
-class Member < ApplicationRecord
+class Membership < ApplicationRecord
   belongs_to :organization
   belongs_to :account
   extend Enumerize
