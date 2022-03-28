@@ -7,6 +7,7 @@ class Organization < ApplicationRecord
   enumerize :organization_class, in: [:Personal, :Business], default: :Personal
 
   has_one :owner, -> { where(role: "owner") }, class_name: "Membership"
+  has_many :admins, -> { where(role: "admin") }, class_name: "Membership"
 
   def upload_logo(file)
     content_type = CommonFile.extract_content_type(file.tempfile.path)
@@ -32,5 +33,17 @@ class Organization < ApplicationRecord
 
   def the_owner
     owner.account
+  end
+
+  def is_owner?(account)
+    owner.account == account
+  end
+
+  def is_admin?(account)
+    admins.where(account: account).exists?
+  end
+
+  def is_member?(account)
+    accounts.include?(account)
   end
 end

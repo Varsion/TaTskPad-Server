@@ -55,10 +55,10 @@ RSpec.configure do |config|
       }
     end
 
-    def user_headers
+    def user_headers(account: @account)
       jwt =
         JWT.encode({
-            account_id: @account.id,
+            account_id: account.id,
             created_at: DateTime.now.strftime("%Q")},
             Rails.application.credentials.secret_key_base
           )

@@ -14,6 +14,7 @@ class TatskpadSchema < GraphQL::Schema
 
     # Organizations related
     field :create_organization, resolver: Mutations::CreateOrganization
+    field :update_organization, resolver: Mutations::UpdateOrganization
   end
 
   query Query
