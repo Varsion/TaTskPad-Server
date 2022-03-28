@@ -3,7 +3,7 @@ module Mutations
     argument :name, String, required: true
     argument :email, Types::Base::Email, required: true
     argument :organization_class, String, required: true
-    argument :logo, ApolloUploadServer::Upload, required: true
+    argument :logo, ApolloUploadServer::Upload, required: false
 
     field :organization, Types::OrganizationType, null: true
     field :errors, [Types::Base::ModelError], null: true
