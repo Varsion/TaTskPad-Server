@@ -48,7 +48,7 @@ RSpec.describe "GraphQL - Transfer Organization Mutations", type: :request do
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {
-        archiveOrganization: nil
+        transferOrganization: nil
       },
       errors: [
         {
