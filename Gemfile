@@ -25,6 +25,7 @@ gem "awesome_print"
 gem "ransack"
 gem "jwt"
 gem "enumerize"
+gem "store_model"
 gem "graphql-ruby"
 gem "graphql", "1.12.17"
 
