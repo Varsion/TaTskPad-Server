@@ -11,6 +11,7 @@ class Organization < ApplicationRecord
   has_many :admins, -> { where(role: "admin") }, class_name: "Membership"
 
   def upload_logo(file)
+    return if file.nil?
     content_type = CommonFile.extract_content_type(file.tempfile.path)
     extension = file.original_filename.split(".").last.downcase
     file_size = file.tempfile.size
