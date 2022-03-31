@@ -6,8 +6,8 @@ module Types
     field :status, String, null: false
     field :logo_url, String, null: true
     field :organization, Types::OrganizationType, null: false
-    field :customize_field, [Types::CustomizeFieldType], null: false
-    field :workflow_step, [Types::WorkflowStepType], null: false
+    field :customize_fields, [Types::CustomizeFieldType], null: false
+    field :workflow_steps, [Types::WorkflowStepType], null: false
 
 
     def logo_url
