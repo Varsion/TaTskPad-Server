@@ -17,6 +17,15 @@ class TatskpadSchema < GraphQL::Schema
     field :update_organization, resolver: Mutations::UpdateOrganization
     field :archive_organization, resolver: Mutations::ArchiveOrganization
     field :transfer_organization, resolver: Mutations::TransferOrganization
+
+    # Projects related
+    field :create_project, resolver: Mutations::CreateProject
+    # field :update_project, resolver: Mutations::UpdateProject
+    # field :archive_project, resolver: Mutations::ArchiveProject
+
+    # Tickets related
+    # field :create_ticket, resolver: Mutations::CreateTicket
+    # field :update_ticket, resolver: Mutations::UpdateTicket
   end
 
   query Query
