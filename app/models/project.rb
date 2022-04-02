@@ -27,7 +27,7 @@ class Project < ApplicationRecord
     validates :name, presence: true
     validates :type, presence: true
 
-    enum :type, %i[string, text, integer, float, boolean], default: :active
+    enum :type, in: { string: "string", text: "text", integer: "integer", boolean: "boolean" }, default: :string
   end
 
   attribute :workflow_steps, WorkflowSteps.to_array_type

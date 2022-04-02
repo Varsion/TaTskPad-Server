@@ -25,6 +25,7 @@ class TatskpadSchema < GraphQL::Schema
     # field :update_project, resolver: Mutations::UpdateProject
     # field :archive_project, resolver: Mutations::ArchiveProject
     field :update_workflow_steps, resolver: Mutations::UpdateWorkflowSteps
+    field :update_customize_fields, resolver: Mutations::UpdateCustomizeFields
 
     # Tickets related
     # field :create_ticket, resolver: Mutations::CreateTicket
