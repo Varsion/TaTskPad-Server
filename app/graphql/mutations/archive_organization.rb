@@ -6,6 +6,7 @@ module Mutations
     field :errors, [Types::Base::ModelError], null: true
 
     def resolve(input)
+      authenticate_user!
       org = Organization.find_by(id: input[:organization_id])
       raise GraphQL::ExecutionError, "No permissions" unless org.is_owner?(current_account)
       org.archive!

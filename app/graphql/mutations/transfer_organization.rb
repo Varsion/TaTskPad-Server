@@ -7,6 +7,7 @@ module Mutations
     field :errors, [Types::Base::ModelError], null: true
 
     def resolve(input)
+      authenticate_user!
       org = Organization.find_by(id: input[:organization_id])
       transfer_account = Account.find_by(id: input[:account_id])
 
