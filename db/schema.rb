@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_29_012832) do
+ActiveRecord::Schema.define(version: 2022_04_05_021713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -57,6 +57,26 @@ ActiveRecord::Schema.define(version: 2022_03_29_012832) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "issues", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.uuid "project_id", null: false
+    t.uuid "author_id", null: false
+    t.uuid "assignee_id"
+    t.string "status", default: "backlog", null: false
+    t.string "priority", default: "p2", null: false
+    t.string "type", default: "story", null: false
+    t.string "estimate", default: "0d"
+    t.jsonb "customize_fields", default: {}
+    t.jsonb "histories", default: {}
+    t.jsonb "labels", default: {}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["assignee_id"], name: "index_issues_on_assignee_id"
+    t.index ["author_id"], name: "index_issues_on_author_id"
+    t.index ["project_id"], name: "index_issues_on_project_id"
+  end
+
   create_table "memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "account_id", null: false
     t.uuid "organization_id", null: false
@@ -94,5 +114,8 @@ ActiveRecord::Schema.define(version: 2022_03_29_012832) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "issues", "accounts", column: "assignee_id"
+  add_foreign_key "issues", "accounts", column: "author_id"
+  add_foreign_key "issues", "projects"
   add_foreign_key "projects", "organizations"
 end
