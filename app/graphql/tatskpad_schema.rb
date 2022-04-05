@@ -3,33 +3,45 @@ class TatskpadSchema < GraphQL::Schema
     field :account, resolver: Resolvers::AccountResolver
     field :organization, resolver: Resolvers::OrganizationResolver
     field :project, resolver: Resolvers::ProjectResolver
+    # field :issue, resolver: Resolvers::IssueResolver
+    # field :bucket, resolver: Resolvers::BucketResolver
+    # field :comment, resolver: Resolvers::CommentResolver
   end
 
   class Mutation < Types::Base::Object
     # Sessions related
-    field :sign_up, resolver: Mutations::SignUp
-    field :sign_in, resolver: Mutations::SignIn
+    field :sign_up, mutation: Mutations::SignUp
+    field :sign_in, mutation: Mutations::SignIn
 
     # Accounts related
-    field :verify_account, resolver: Mutations::VerifyAccount
-    field :update_account, resolver: Mutations::UpdateAccount
+    field :verify_account, mutation: Mutations::VerifyAccount
+    field :update_account, mutation: Mutations::UpdateAccount
 
     # Organizations related
-    field :create_organization, resolver: Mutations::CreateOrganization
-    field :update_organization, resolver: Mutations::UpdateOrganization
-    field :archive_organization, resolver: Mutations::ArchiveOrganization
-    field :transfer_organization, resolver: Mutations::TransferOrganization
+    field :create_organization, mutation: Mutations::CreateOrganization
+    field :update_organization, mutation: Mutations::UpdateOrganization
+    field :archive_organization, mutation: Mutations::ArchiveOrganization
+    field :transfer_organization, mutation: Mutations::TransferOrganization
 
     # Projects related
-    field :create_project, resolver: Mutations::CreateProject
-    field :update_project, resolver: Mutations::UpdateProject
-    field :archive_project, resolver: Mutations::ArchiveProject
-    field :update_workflow_steps, resolver: Mutations::UpdateWorkflowSteps
-    field :update_customize_fields, resolver: Mutations::UpdateCustomizeFields
+    field :create_project, mutation: Mutations::CreateProject
+    field :update_project, mutation: Mutations::UpdateProject
+    field :archive_project, mutation: Mutations::ArchiveProject
+    field :update_workflow_steps, mutation: Mutations::UpdateWorkflowSteps
+    field :update_customize_fields, mutation: Mutations::UpdateCustomizeFields
 
-    # Tickets related
-    # field :create_ticket, resolver: Mutations::CreateTicket
-    # field :update_ticket, resolver: Mutations::UpdateTicket
+    # Issues related
+    # field :create_issue, mutation: Mutations::CreateIssue
+    # field :update_issue, mutation: Mutations::UpdateIssue
+
+    # Buckets related
+    # field :create_bucket, mutation: Mutations::CreateBucket
+    # field :update_bucket, mutation: Mutations::UpdateBucket
+
+    # Comments related
+    # field :create_comment, mutation: Mutations::CreateComment
+    # field :update_comment, mutation: Mutations::UpdateComment
+    # field :delete_comment, mutation: Mutations::DeleteComment
   end
 
   query Query
