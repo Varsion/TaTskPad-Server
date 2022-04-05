@@ -22,7 +22,7 @@ class TatskpadSchema < GraphQL::Schema
 
     # Projects related
     field :create_project, resolver: Mutations::CreateProject
-    # field :update_project, resolver: Mutations::UpdateProject
+    field :update_project, resolver: Mutations::UpdateProject
     # field :archive_project, resolver: Mutations::ArchiveProject
     field :update_workflow_steps, resolver: Mutations::UpdateWorkflowSteps
     field :update_customize_fields, resolver: Mutations::UpdateCustomizeFields
