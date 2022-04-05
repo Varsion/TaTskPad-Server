@@ -71,4 +71,9 @@ class Project < ApplicationRecord
       content_type: file.content_type
     )
   end
+
+  def archive!
+    self.status = :archived
+    save!
+  end
 end
