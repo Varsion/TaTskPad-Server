@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2022_04_05_021713) do
     t.uuid "assignee_id"
     t.string "status", default: "backlog", null: false
     t.string "priority", default: "p2", null: false
-    t.string "type", default: "story", null: false
+    t.string "genre", default: "story", null: false
     t.string "estimate", default: "0d"
     t.jsonb "customize_fields", default: {}
     t.jsonb "histories", default: {}

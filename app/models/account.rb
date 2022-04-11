@@ -4,6 +4,8 @@ class Account < ApplicationRecord
   has_secure_password
   has_many :memberships
   has_many :organizations, through: :memberships
+  has_many :issues, as: :author
+  has_many :issues, as: :assignee
 
   has_one_attached :avatar
 

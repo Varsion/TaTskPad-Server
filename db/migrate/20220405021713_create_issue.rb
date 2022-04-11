@@ -8,7 +8,7 @@ class CreateIssue < ActiveRecord::Migration[6.1]
       t.belongs_to :assignee, type: :uuid, foreign_key: { to_table: :accounts }
       t.string :status, null: false, default: "backlog"
       t.string :priority, null: false, default: "p2"
-      t.string :type, null: false, default: "story"
+      t.string :genre, null: false, default: "story"
       t.string :estimate, default: "0d"
       t.jsonb :customize_fields, default: {}
       t.jsonb :histories, default: {}

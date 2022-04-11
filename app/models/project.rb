@@ -23,6 +23,7 @@ class Project < ApplicationRecord
 
     attribute :name, :string
     attribute :type, :string
+    attribute :value, :string
 
     validates :name, presence: true
     validates :type, presence: true

@@ -1,19 +1,21 @@
 class Issue < ApplicationRecord
   belongs_to :project
-  belongs_to :author, foreign_key: { to_table: :accounts }
-  belongs_to :assignee, foreign_key: { to_table: :accounts }
+  belongs_to :author, class_name: "Account", foreign_key: :author_id
+  belongs_to :assignee, class_name: "Account", foreign_key: :assignee_id, optional: true
 
   extend Enumerize
   enumerize :priority, in: [:p0, :p1, :p2, :p3], default: :p2
-  enumerize :type, in: [:story, :bug, :task, :subtask], default: :story
+  enumerize :genre, in: [:story, :bug, :task, :subtask], default: :story
 
   class CustomizeFields
     include StoreModel::Model
 
     attribute :name, :string
+    attribute :type, :string
     attribute :value, :string
 
     validates :name, presence: true
+    validates :type, presence: true
   end
 
   class Histories
