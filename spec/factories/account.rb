@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :account do
+  factory :account, aliases: [:author] do
     email { Faker::Internet.email }
     name { Faker::Name.name }
     verify_code { Faker::Number.number(digits: 6) }
