@@ -38,35 +38,71 @@ RSpec.describe "GraphQL - Create Issue Mutations", type: :request do
 
   it "work!" do
     post "/graphql",
-    params: {
-      query: query, 
-      variables: {
-        input: {
-          title: "word!",
-          description: "word!",
-          projectId: @project.id,
-          priority: "p2",
-          genre: "bug"
+      params: {
+        query: query, 
+        variables: {
+          input: {
+            title: "word!",
+            description: "word!",
+            projectId: @project.id,
+            priority: "p2",
+            genre: "bug"
+          }
+        }
+      }.to_json, headers: user_headers
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        createIssue: {
+          issue: {
+            title: "word!",
+            description: "word!",
+            project: {
+              id: @project.id
+            },
+            author: {
+              id: @account.id
+            },
+            genre: "bug"
+          }
         }
       }
-    }.to_json, headers: user_headers
-  expect(response.status).to eq 200
-  expect(response.body).to include_json({
-    data: {
-      createIssue: {
-        issue: {
-          title: "word!",
-          description: "word!",
-          project: {
-            id: @project.id
-          },
-          author: {
-            id: @account.id
-          },
-          genre: "bug"
+    })
+  end
+
+  it "work with customize fields" do
+    post "/graphql",
+      params: {
+        query: query, 
+        variables: {
+          input: {
+            title: "word!",
+            description: "word!",
+            projectId: @project.id,
+            priority: "p2",
+            genre: "bug",
+            customizeFields: [
+              {
+                name: "test",
+                type: "string",
+                value: "value"
+              }
+            ]
+          }
+        }
+      }.to_json, headers: user_headers
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        createIssue: {
+          issue: {
+            customizeFields: [{
+              name: "test",
+              value: "value"
+            }]
+          }
         }
       }
-    }
-  })
+    })
   end
 end

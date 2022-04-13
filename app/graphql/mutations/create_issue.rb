@@ -13,8 +13,12 @@ module Mutations
     field :errors, [Types::Base::ModelError], null: true
 
     def resolve(input)
+      customize_fields = input.delete(:customize_fields)
       issue = Issue.new(input)
       issue.author = current_account
+
+      issue.customize_fields = customize_fields.to_json unless customize_fields.nil?
+
       if issue.save && issue.errors.blank?
         {
           issue: issue
