@@ -39,7 +39,7 @@ class TatskpadSchema < GraphQL::Schema
     field :update_issue, mutation: Mutations::UpdateIssue
 
     # # Buckets related
-    # field :create_bucket, mutation: Mutations::CreateBucket
+    field :create_bucket, mutation: Mutations::CreateBucket
     # field :update_bucket, mutation: Mutations::UpdateBucket
 
     # # Comments related
