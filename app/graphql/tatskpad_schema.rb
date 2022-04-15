@@ -42,7 +42,7 @@ class TatskpadSchema < GraphQL::Schema
     field :update_bucket, mutation: Mutations::UpdateBucket
 
     # # Comments related
-    # field :create_comment, mutation: Mutations::CreateComment
+    field :create_comment, mutation: Mutations::CreateComment
     # field :update_comment, mutation: Mutations::UpdateComment
     # field :delete_comment, mutation: Mutations::DeleteComment
 

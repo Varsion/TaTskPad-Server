@@ -2,6 +2,7 @@ class Issue < ApplicationRecord
   belongs_to :project
   belongs_to :author, class_name: "Account", foreign_key: :author_id
   belongs_to :assignee, class_name: "Account", foreign_key: :assignee_id, optional: true
+  has_many :comments, dependent: :destroy
 
   extend Enumerize
   enumerize :priority, in: [:p0, :p1, :p2, :p3], default: :p2

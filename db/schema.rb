@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_14_122559) do
+ActiveRecord::Schema.define(version: 2022_04_15_084036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -64,6 +64,16 @@ ActiveRecord::Schema.define(version: 2022_04_14_122559) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_buckets_on_project_id"
+  end
+
+  create_table "comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "issue_id"
+    t.uuid "account_id"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_comments_on_account_id"
+    t.index ["issue_id"], name: "index_comments_on_issue_id"
   end
 
   create_table "issues", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -124,6 +134,8 @@ ActiveRecord::Schema.define(version: 2022_04_14_122559) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "buckets", "projects"
+  add_foreign_key "comments", "accounts"
+  add_foreign_key "comments", "issues"
   add_foreign_key "issues", "accounts", column: "assignee_id"
   add_foreign_key "issues", "accounts", column: "author_id"
   add_foreign_key "issues", "projects"
