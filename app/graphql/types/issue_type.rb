@@ -11,6 +11,6 @@ module Types
     field :estimate, String, null: true
     field :customize_fields, [Types::CustomizeFieldType], null: true
     field :histories, [Types::HistoryType], null: true
-    # field :labels, JSON, null: true
+    field :comments, [Types::CommentType], null: true
   end
 end

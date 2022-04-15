@@ -51,4 +51,45 @@ RSpec.describe "GraphQL - Issue Query", type: :request do
         }
       })
   end
+
+  context "comments" do
+    before :each do
+      @comment = create(:comment, issue: @issue, account: @account)
+    end
+
+    let(:query) do
+      "
+      query issue($issueId: ID!) {
+        issue(issueId: $issueId) {
+          id
+          title
+          comments {
+            content
+          }
+        }
+      }
+      "
+    end
+
+    it "Works!" do
+      post "/graphql",
+        params: {
+          query: query, 
+          variables: {
+            issueId: @issue.id
+          }
+        }.to_json, headers: user_headers
+      expect(response.status).to eq 200
+      expect(response.body).to include_json({
+        data: {
+          issue: {
+            id: @issue.id,
+            comments: [{
+              content: @comment.content
+            }]
+          }
+        }
+      })
+    end
+  end
 end
