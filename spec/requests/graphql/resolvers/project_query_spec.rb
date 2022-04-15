@@ -68,4 +68,37 @@ RSpec.describe "GraphQL - Account Query", type: :request do
       }
     })
   end
+
+  context "Project Bucket" do
+    before :each do
+      create(:bucket, project: @project)
+      create(:bucket, project: @project)
+    end
+
+    let(:query) do
+      "
+        query Project($projectId: ID!) {
+          project(projectId: $projectId) {
+            id
+            buckets {
+              name
+            }
+          }
+        }
+      "
+    end
+
+    it "work" do
+      post "/graphql",
+        params: {
+          query: query,
+          variables: {
+            projectId: @project.id
+          }
+        }.to_json, headers: user_headers
+      expect(response.status).to eq 200
+      result = JSON.parse(response.body)
+      expect(result["data"]["project"]["buckets"].size).to eq 2
+    end
+  end
 end
