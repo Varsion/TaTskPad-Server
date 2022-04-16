@@ -2,6 +2,7 @@ class Project < ApplicationRecord
   belongs_to :organization
   has_one_attached :logo
   has_many :buckets, dependent: :destroy
+  has_many :knowledge_bases, dependent: :destroy
 
   extend Enumerize
   enumerize :status, in: [:active, :archived], default: :active

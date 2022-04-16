@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_15_084036) do
+ActiveRecord::Schema.define(version: 2022_04_16_022858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -96,6 +96,16 @@ ActiveRecord::Schema.define(version: 2022_04_15_084036) do
     t.index ["project_id"], name: "index_issues_on_project_id"
   end
 
+  create_table "knowledge_bases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.uuid "project_id"
+    t.boolean "archived", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_knowledge_bases_on_project_id"
+  end
+
   create_table "memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "account_id", null: false
     t.uuid "organization_id", null: false
@@ -139,5 +149,6 @@ ActiveRecord::Schema.define(version: 2022_04_15_084036) do
   add_foreign_key "issues", "accounts", column: "assignee_id"
   add_foreign_key "issues", "accounts", column: "author_id"
   add_foreign_key "issues", "projects"
+  add_foreign_key "knowledge_bases", "projects"
   add_foreign_key "projects", "organizations"
 end
