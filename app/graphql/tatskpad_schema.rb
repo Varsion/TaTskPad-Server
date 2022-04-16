@@ -46,7 +46,7 @@ class TatskpadSchema < GraphQL::Schema
     field :delete_comment, mutation: Mutations::DeleteComment
 
     # # Knowledge base related
-    # field :create_knowledge_base, mutation: Mutations::CreateKnowledgeBase
+    field :create_knowledge_base, mutation: Mutations::CreateKnowledgeBase
     # field :update_knowledge_base, mutation: Mutations::UpdateKnowledgeBase
     # field :archive_knowledge_base, mutation: Mutations::ArchiveKnowledgeBase
 
