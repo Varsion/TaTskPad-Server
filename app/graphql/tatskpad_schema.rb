@@ -48,7 +48,7 @@ class TatskpadSchema < GraphQL::Schema
     # # Knowledge base related
     field :create_knowledge_base, mutation: Mutations::CreateKnowledgeBase
     field :update_knowledge_base, mutation: Mutations::UpdateKnowledgeBase
-    # field :archive_knowledge_base, mutation: Mutations::ArchiveKnowledgeBase
+    field :archive_knowledge_base, mutation: Mutations::ArchiveKnowledgeBase
 
     # # Documents related
     # field :create_document, mutation: Mutations::CreateDocument
