@@ -8,5 +8,8 @@ class Document < ApplicationRecord
   end
   attribute :contributors, Contributor.to_array_type
 
+  def archive!
+    update(archived: true)
+  end
   
 end
