@@ -51,4 +51,29 @@ RSpec.describe "GraphQL - Create Document Mutations", type: :request do
       }
     })
   end
+
+  it "work! with default knowledge base" do
+    post "/graphql",
+      params: {
+        query: query, 
+        variables: {
+          input: {
+            projectId: @project.id,
+            title: "New Document",
+            content: "New Document Content"
+          }
+        }
+      }.to_json, headers: user_headers
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        createDocument: {
+          document: {
+            title: "New Document",
+            content: "New Document Content",
+          }
+        }
+      }
+    })
+  end
 end

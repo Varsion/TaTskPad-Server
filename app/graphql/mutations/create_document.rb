@@ -1,7 +1,7 @@
 module Mutations
   class CreateDocument < Mutations::BaseMutation
     argument :project_id, ID, required: true
-    argument :knowledge_base_id, ID, required: true
+    argument :knowledge_base_id, ID, required: false
     argument :title, String, required: true
     argument :content, String, required: true
 
@@ -15,10 +15,12 @@ module Mutations
 
       raise GraphQL::ExecutionError, "no premiss" unless project.organization.is_member?(current_account)
 
+      knowledge_base_id = input[:knowledge_base_id].nil? ? project.default_knowledge_base.id : input[:knowledge_base_id]
+
       document = Document.new(
         title: input[:title],
         content: input[:content],
-        knowledge_base_id: input[:knowledge_base_id]
+        knowledge_base_id: knowledge_base_id
       )
 
       document.contributors << { id: current_account.id }
