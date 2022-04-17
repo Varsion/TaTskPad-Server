@@ -1,11 +1,12 @@
 class Document < ApplicationRecord
   belongs_to :knowledge_base
 
-  class Contributors
+  class Contributor
     include StoreModel::Model
     attribute :id
     validates :id, presence: true
   end
-  attribute :contributors, Contributors.to_array_type
+  attribute :contributors, Contributor.to_array_type
 
+  
 end

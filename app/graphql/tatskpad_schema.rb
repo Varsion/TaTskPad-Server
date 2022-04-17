@@ -52,7 +52,7 @@ class TatskpadSchema < GraphQL::Schema
 
     # # Documents related
     field :create_document, mutation: Mutations::CreateDocument
-    # field :update_document, mutation: Mutations::UpdateDocument
+    field :update_document, mutation: Mutations::UpdateDocument
     # field :archive_document, mutation: Mutations::ArchiveDocument
 
     # # Kanban board related

@@ -3,6 +3,7 @@ module Types
     field :id, ID, null: false
     field :title, String, null: false
     field :content, String, null: false
+    field :knowledge_base, Types::KnowledgeBaseType, null: false
     field :contributors, [Types::AccountType], null: false
 
     def contributors
