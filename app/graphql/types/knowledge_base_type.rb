@@ -4,5 +4,6 @@ module Types
     field :title, String, null: false
     field :description, String, null: true
     field :archived, Boolean, null: false
+    field :documents, [Types::DocumentType], null: true
   end
 end
