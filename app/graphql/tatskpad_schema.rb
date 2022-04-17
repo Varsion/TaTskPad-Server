@@ -51,7 +51,7 @@ class TatskpadSchema < GraphQL::Schema
     field :archive_knowledge_base, mutation: Mutations::ArchiveKnowledgeBase
 
     # # Documents related
-    # field :create_document, mutation: Mutations::CreateDocument
+    field :create_document, mutation: Mutations::CreateDocument
     # field :update_document, mutation: Mutations::UpdateDocument
     # field :archive_document, mutation: Mutations::ArchiveDocument
 
