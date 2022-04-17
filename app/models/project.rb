@@ -3,6 +3,8 @@ class Project < ApplicationRecord
   has_one_attached :logo
   has_many :buckets, dependent: :destroy
   has_many :knowledge_bases, dependent: :destroy
+  after_save :create_default_knowledge_base
+  has_one :default_knowledge_base, -> { where(is_default: true) }, class_name: "KnowledgeBase"
 
   extend Enumerize
   enumerize :status, in: [:active, :archived], default: :active
@@ -39,14 +41,6 @@ class Project < ApplicationRecord
   validates :workflow_steps, store_model: { merge_errors: true }
   validates :customize_fields, store_model: { merge_errors: true }
 
-  def self.create_project(input)
-    project = create(
-      organization_id: input[:organization_id],
-      name: input[:name],
-      key_word: input[:key_word].upcase,
-      project_class: input[:project_class]
-    )
-  end
 
   def init_workflow_steps
     self.workflow_steps = [
@@ -78,5 +72,13 @@ class Project < ApplicationRecord
   def archive!
     self.status = :archived
     save!
+  end
+
+  def create_default_knowledge_base
+    knowledge_base = KnowledgeBase.create(
+      title: name + "'s Knowledge Base",
+      project_id: id,
+      is_default: true
+    )
   end
 end

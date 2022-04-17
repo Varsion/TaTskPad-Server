@@ -2,7 +2,10 @@ module Mutations
   class CreateProject < Mutations::BaseMutation
     argument :organization_id, ID, required: true
     argument :name, String, required: true
-    argument :key_word, String, required: true
+    argument :key_word, String, required: true, 
+      prepare: ->(key_word, ctx) {
+        key_word.upcase
+      }
     argument :project_class, String, required: true
 
     argument :logo, ApolloUploadServer::Upload, required: false
@@ -15,7 +18,7 @@ module Mutations
       org = Organization.find_by(id: input[:organization_id])
 
       raise GraphQL::ExecutionError, "You are not a member of this organization" unless org.is_member?(current_account)
-      project = Project.create_project(input)
+      project = Project.new(input)
       project.init_workflow_steps
       project.upload_logo(input[:logo])
       if project.save && project.errors.blank?
