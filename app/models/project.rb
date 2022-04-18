@@ -3,7 +3,7 @@ class Project < ApplicationRecord
   has_one_attached :logo
   has_many :buckets, dependent: :destroy
   has_many :knowledge_bases, dependent: :destroy
-  after_save :create_default_knowledge_base
+  after_create :create_default_knowledge_base
   has_one :default_knowledge_base, -> { where(is_default: true) }, class_name: "KnowledgeBase"
 
   extend Enumerize
@@ -75,8 +75,6 @@ class Project < ApplicationRecord
   end
 
   def create_default_knowledge_base
-    self.reload
-    return if default_knowledge_base.present?
     knowledge_base = KnowledgeBase.create(
       title: name + "'s Knowledge Base",
       project_id: id,
