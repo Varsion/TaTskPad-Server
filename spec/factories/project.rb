@@ -7,6 +7,7 @@ FactoryBot.define do
     
     after(:create) do |project|
       project.init_workflow_steps
+      project.save
     end
   end
 end

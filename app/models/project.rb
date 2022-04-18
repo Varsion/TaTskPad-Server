@@ -75,6 +75,8 @@ class Project < ApplicationRecord
   end
 
   def create_default_knowledge_base
+    self.reload
+    return if default_knowledge_base.present?
     knowledge_base = KnowledgeBase.create(
       title: name + "'s Knowledge Base",
       project_id: id,
