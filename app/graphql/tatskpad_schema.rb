@@ -57,7 +57,7 @@ class TatskpadSchema < GraphQL::Schema
 
     # # Kanban board related
     field :create_board, mutation: Mutations::CreateBoard
-    # field :update_board, mutation: Mutations::UpdateBoard
+    field :update_board, mutation: Mutations::UpdateBoard
 
     # # Sprint related
     # field :start_sprint, mutation: Mutations::StartSprint
