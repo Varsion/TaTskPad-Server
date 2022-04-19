@@ -3,8 +3,9 @@ class Project < ApplicationRecord
   has_one_attached :logo
   has_many :buckets, dependent: :destroy
   has_many :knowledge_bases, dependent: :destroy
-  after_create :create_default_knowledge_base
+  after_create :create_default_knowledge_base, :create_backlog
   has_one :default_knowledge_base, -> { where(is_default: true) }, class_name: "KnowledgeBase"
+  has_one :backlog, -> { where(is_backlog: true) }, class_name: "Bucket"
 
   extend Enumerize
   enumerize :status, in: [:active, :archived], default: :active
@@ -79,6 +80,15 @@ class Project < ApplicationRecord
       title: name + "'s Knowledge Base",
       project_id: id,
       is_default: true
+    )
+  end
+
+  def create_backlog
+    # a basic bucket for project as backlog
+    Bucket.create(
+      name: "#{name}'s Backlog",
+      project_id: id,
+      is_backlog: true
     )
   end
 end
