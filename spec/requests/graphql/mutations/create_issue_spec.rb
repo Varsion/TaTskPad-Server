@@ -50,6 +50,7 @@ RSpec.describe "GraphQL - Create Issue Mutations", type: :request do
           }
         }
       }.to_json, headers: user_headers
+    expect(Issue.first.bucket).to eq(@project.backlog)
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {
