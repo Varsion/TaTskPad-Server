@@ -98,7 +98,7 @@ RSpec.describe "GraphQL - Account Query", type: :request do
         }.to_json, headers: user_headers
       expect(response.status).to eq 200
       result = JSON.parse(response.body)
-      expect(result["data"]["project"]["buckets"].size).to eq 2
+      expect(result["data"]["project"]["buckets"].size).to eq 3
     end
   end
 end
