@@ -28,6 +28,7 @@ gem "enumerize"
 gem "store_model"
 gem "graphql-ruby"
 gem "graphql", "1.12.17"
+gem "rack-cors"
 
 gem "apollo_upload_server", "2.0.0.beta.3"
 
