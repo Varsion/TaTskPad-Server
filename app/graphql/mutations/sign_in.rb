@@ -10,17 +10,21 @@ module Mutations
       account = Account.find_by(email: input[:email])
       if account && account.authenticate(input[:password])
         token = account.login
-        {
+        return {
           account: {
             id: account.id,
             email: account.email,
             token: token
           }
         }
-      else
-        errors = Types::Base::ModelError.errors_of(account)
-        {errors: errors}
       end
+
+      return {
+          errors: [{
+          attribute: "account",
+          message: "Please check email and password"
+        }]
+      }
     end
   end
 end
