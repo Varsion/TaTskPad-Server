@@ -6,6 +6,7 @@ module Types
     field :token, String, null: true
     field :verified, Boolean, null: false
     field :avatar, String, null: true
+    field :organizations, [Types::OrganizationType], null: true
 
     def avatar
       object.avatar.attached? ? 
