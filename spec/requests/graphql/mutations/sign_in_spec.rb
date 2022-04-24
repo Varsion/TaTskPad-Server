@@ -36,17 +36,17 @@ RSpec.describe "GraphQL - Sign In Mutations", type: :request do
           }
         }
       }.to_json, headers: basic_headers
-      expect(response.status).to eq 200
-      expect(response.body).to include_json({
-        data: {
-          signIn:{
-            account: {
-              email: @account.email,
-              token: /\w+/
-            }
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        signIn:{
+          account: {
+            email: @account.email,
+            token: /\w+/
           }
         }
-      })
+      }
+    })
   end
 
   it "password fails" do
