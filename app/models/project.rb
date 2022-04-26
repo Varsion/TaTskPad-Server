@@ -1,9 +1,10 @@
 class Project < ApplicationRecord
   belongs_to :organization
   has_one_attached :logo
+  has_many :boards, dependent: :destroy
   has_many :buckets, dependent: :destroy
   has_many :knowledge_bases, dependent: :destroy
-  after_create :create_default_knowledge_base, :create_backlog
+  after_create :create_default_knowledge_base, :create_backlog, :create_default_board
   has_one :default_knowledge_base, -> { where(is_default: true) }, class_name: "KnowledgeBase"
   has_one :backlog, -> { where(is_backlog: true) }, class_name: "Bucket"
 
@@ -89,6 +90,13 @@ class Project < ApplicationRecord
       name: "#{name}'s Backlog",
       project_id: id,
       is_backlog: true
+    )
+  end
+
+  def create_default_board
+    Board.create(
+      name: name + "'s Board",
+      project_id: id
     )
   end
 end

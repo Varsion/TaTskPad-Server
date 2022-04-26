@@ -43,6 +43,7 @@ RSpec.describe "GraphQL - Create Project Mutations", type: :request do
       }.to_json, headers: user_headers
     expect(KnowledgeBase.count).to eq(1)
     expect(Project.first.backlog).to eq(Bucket.first)
+    expect(Board.count).to eq(1)
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {
