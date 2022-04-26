@@ -5,6 +5,7 @@ module Types
     field :project_class, String, null: false
     field :status, String, null: false
     field :logo_url, String, null: true
+    field :key_word, String, null: true
     field :buckets, [Types::BucketType], null: true
     field :organization, Types::OrganizationType, null: false
     field :customize_fields, [Types::CustomizeFieldType], null: false
