@@ -57,4 +57,41 @@ RSpec.describe "GraphQL - Get Organization Query", type: :request do
       }
     })
   end
+
+  context "Project" do
+    before :each do
+      @project = create(:project, organization: @organization)
+    end
+    let(:query) do
+      "
+        query GetProjects($organizationId: ID!) {
+          organization(organizationId: $organizationId) {
+            projects {
+              name
+            }
+          }
+        }
+      "
+    end
+
+    it "Work!" do
+      post "/graphql",
+        params: {
+          query: query,
+          variables: {
+            organizationId: @organization.id
+          }
+        }.to_json, headers: user_headers
+      expect(response.status).to eq 200
+      expect(response.body).to include_json({
+        data: {
+          organization: {
+            projects: [{
+              name: @project.name
+            }]
+          }
+        }
+      })
+    end
+  end
 end

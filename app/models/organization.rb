@@ -2,6 +2,7 @@ class Organization < ApplicationRecord
   has_many :memberships
   has_many :accounts, through: :memberships
   has_one_attached :logo
+  has_many :projects
 
   extend Enumerize
   enumerize :organization_class, in: [:Personal, :Business], default: :Personal
