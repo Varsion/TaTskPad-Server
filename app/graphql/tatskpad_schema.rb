@@ -60,6 +60,7 @@ class TatskpadSchema < GraphQL::Schema
     field :update_board, mutation: Mutations::UpdateBoard
 
     # # Sprint related
+    field :create_sprint, mutation: Mutations::CreateSprint
     # field :start_sprint, mutation: Mutations::StartSprint
     # field :end_sprint, mutation: Mutations::EndSprint
   end
