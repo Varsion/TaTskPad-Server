@@ -16,6 +16,7 @@ RSpec.describe "GraphQL - Create Bucket Mutations", type: :request do
         bucket {
           id
           name
+          isRelease
         }
       }
     }
@@ -29,7 +30,8 @@ RSpec.describe "GraphQL - Create Bucket Mutations", type: :request do
         variables: {
           input: {
             name: "New Bucket",
-            projectId: @project.id
+            projectId: @project.id,
+            isRelease: false
           }
         }
       }.to_json, headers: user_headers
@@ -38,7 +40,8 @@ RSpec.describe "GraphQL - Create Bucket Mutations", type: :request do
       data: {
         createBucket: {
           bucket: {
-            name: "New Bucket"
+            name: "New Bucket",
+            isRelease: false
           }
         }
       }
