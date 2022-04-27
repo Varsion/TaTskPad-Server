@@ -11,6 +11,7 @@ RSpec.describe "GraphQL - Update Issue Mutations", type: :request do
     @assignee = create(:account)
 
     @issue = create(:issue, project: @project, author: @account)
+    @bucket = create(:bucket, project: @project)
   end
 
   let(:query) do
@@ -83,6 +84,29 @@ RSpec.describe "GraphQL - Update Issue Mutations", type: :request do
             assignee: {
               id: @assignee.id
             }
+          }
+        }
+      }
+    })
+  end
+
+  it "just move bucket" do
+    post "/graphql",
+      params: {
+        query: query, 
+        variables: {
+          input: {
+            id: @issue.id,
+            bucketId: @bucket.id
+          }
+        }
+      }.to_json, headers: user_headers
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        updateIssue: {
+          issue: {
+            id: @issue.id
           }
         }
       }

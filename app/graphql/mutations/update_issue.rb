@@ -6,6 +6,7 @@ module Mutations
     argument :description, String, required: false
     argument :priority, String, required: false
     argument :genre, String, required: false
+    argument :bucket_id, ID, required: false
     argument :estimate, String, required: false
     argument :customize_fields, [Types::Inputs::CustomizeFieldInput], required: false
     argument :labels, [String], required: false
