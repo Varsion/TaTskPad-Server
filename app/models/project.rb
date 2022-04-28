@@ -3,10 +3,14 @@ class Project < ApplicationRecord
   has_one_attached :logo
   has_many :boards, dependent: :destroy
   has_many :buckets, dependent: :destroy
+  has_many :sprint
   has_many :knowledge_bases, dependent: :destroy
-  after_create :create_default_knowledge_base, :create_backlog, :create_default_board
+
   has_one :default_knowledge_base, -> { where(is_default: true) }, class_name: "KnowledgeBase"
   has_one :backlog, -> { where(is_backlog: true) }, class_name: "Bucket"
+  has_one :current_sprint, -> { where(is_current: true) }
+
+  after_create :create_default_knowledge_base, :create_backlog, :create_default_board
 
   extend Enumerize
   enumerize :status, in: [:active, :archived], default: :active
