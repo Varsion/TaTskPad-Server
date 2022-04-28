@@ -2,7 +2,7 @@ module Mutations
   class CreateBucket < Mutations::BaseMutation
     argument :project_id, ID, required: true
     argument :name, String, required: true
-    argument :is_release, Boolean, required: true
+    argument :is_release, Boolean, required: false
 
     field :bucket, Types::BucketType, null: true
     field :errors, [Types::Base::ModelError], null: true
