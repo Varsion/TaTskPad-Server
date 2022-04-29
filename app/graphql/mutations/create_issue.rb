@@ -15,6 +15,7 @@ module Mutations
     def resolve(input)
       customize_fields = input.delete(:customize_fields)
       issue = Issue.new(input)
+      issue.key_number = issue.generate_key_number
       issue.author = current_account
 
       issue.customize_fields = customize_fields.to_json unless customize_fields.nil?

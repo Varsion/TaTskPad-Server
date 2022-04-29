@@ -77,7 +77,7 @@ RSpec.describe "GraphQL - Account Query", type: :request do
 
     let(:query) do
       "
-        query Project($projectId: ID!) {
+        query ($projectId: ID!) {
           project(projectId: $projectId) {
             id
             buckets {

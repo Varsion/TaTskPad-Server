@@ -5,6 +5,7 @@ class Project < ApplicationRecord
   has_many :buckets, dependent: :destroy
   has_many :sprint
   has_many :knowledge_bases, dependent: :destroy
+  has_many :issues
 
   has_one :default_knowledge_base, -> { where(is_default: true) }, class_name: "KnowledgeBase"
   has_one :backlog, -> { where(is_backlog: true) }, class_name: "Bucket"

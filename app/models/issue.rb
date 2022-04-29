@@ -38,4 +38,9 @@ class Issue < ApplicationRecord
     self.bucket_id = project.backlog.id
     self.save
   end
+
+  def generate_key_number
+    count = self.project.issues.count
+    project.key_word + "-" + (count + 1).to_s
+  end
 end
