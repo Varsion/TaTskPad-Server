@@ -25,6 +25,13 @@ class TatskpadSchema < GraphQL::Schema
     field :archive_organization, mutation: Mutations::ArchiveOrganization
     field :transfer_organization, mutation: Mutations::TransferOrganization
 
+    # Members related
+    # field :invite_member, mutation: Mutations::InviteMember
+
+    # Role related
+    field :create_role, mutation: Mutations::CreateRole
+    # field :update_role, mutation: Mutations::UpdateRole
+
     # Projects related
     field :create_project, mutation: Mutations::CreateProject
     field :update_project, mutation: Mutations::UpdateProject
