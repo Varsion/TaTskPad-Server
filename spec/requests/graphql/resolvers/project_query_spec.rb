@@ -21,9 +21,6 @@ RSpec.describe "GraphQL - Account Query", type: :request do
             name
             description
           }
-          organization {
-            id
-          }
         }
       }
     "
@@ -44,9 +41,6 @@ RSpec.describe "GraphQL - Account Query", type: :request do
           id: @project.id,
           name: @project.name,
           workflowSteps: @project.workflow_steps.as_json,
-          organization: {
-            id: @organization.id
-          }
         }
       }
     })

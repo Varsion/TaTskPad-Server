@@ -15,10 +15,6 @@ RSpec.describe "GraphQL - Create Project Mutations", type: :request do
       mutation CreateProject($input: CreateProjectInput!) {
         createProject(input: $input) {
           project {
-            organization {
-              id
-              name
-            }
             name
             status
             logoUrl
@@ -49,10 +45,6 @@ RSpec.describe "GraphQL - Create Project Mutations", type: :request do
       data: {
         createProject: {
           project: {
-            organization: {
-              id: @organization.id,
-              name: @organization.name
-            },
             name: "Test Project",
             status: "active"
           }
@@ -80,10 +72,6 @@ RSpec.describe "GraphQL - Create Project Mutations", type: :request do
       data: {
         createProject: {
           project: {
-            organization: {
-              id: @organization.id,
-              name: @organization.name
-            },
             name: "Test Project",
             status: "active",
             logoUrl: /logo.jpg/

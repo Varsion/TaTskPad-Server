@@ -7,7 +7,7 @@ module Types
     field :logo_url, String, null: true
     field :key_word, String, null: true
     field :buckets, [Types::BucketType], null: true
-    field :organization, Types::OrganizationType, null: false
+    field :knowledge_base, [Types::KnowledgeBaseType], null: true
     field :customize_fields, [Types::CustomizeFieldType], null: false
     field :workflow_steps, [Types::WorkflowStepType], null: false
 

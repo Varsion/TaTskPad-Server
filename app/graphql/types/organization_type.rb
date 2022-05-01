@@ -8,6 +8,7 @@ module Types
     field :status, String, null: false
     field :owner, Types::AccountType, null: false
     field :projects, [Types::ProjectType], null: false
+    field :roles, [Types::RoleType], null: false
 
     def logo_url
       object.logo.attached? ? Rails.application.routes.url_helpers.url_for(object.logo) : ""
