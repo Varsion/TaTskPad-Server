@@ -9,7 +9,7 @@ class Project < ApplicationRecord
 
   has_one :default_knowledge_base, -> { where(is_default: true) }, class_name: "KnowledgeBase"
   has_one :backlog, -> { where(is_backlog: true) }, class_name: "Bucket"
-  has_one :current_sprint, -> { where(is_current: true) }
+  has_one :current_sprint, -> { where(is_current: true) }, class_name: "Sprint"
 
   after_create :create_default_knowledge_base, :create_backlog, :create_default_board
 
