@@ -1,8 +1,9 @@
 class Organization < ApplicationRecord
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :accounts, through: :memberships
   has_one_attached :logo
-  has_many :projects
+  has_many :projects, dependent: :destroy
+  has_many :roles, dependent: :destroy
 
   extend Enumerize
   enumerize :organization_class, in: [:Personal, :Business], default: :Personal
