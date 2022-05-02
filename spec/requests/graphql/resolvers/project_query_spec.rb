@@ -95,4 +95,60 @@ RSpec.describe "GraphQL - Account Query", type: :request do
       expect(result["data"]["project"]["buckets"].size).to eq 3
     end
   end
+
+  context "Project Sprint" do
+    before :each do
+      @sprint = create(:sprint, project: @project, is_current: true)
+      @issue = create(:issue, project: @project, author: @account)
+      @issue.update(bucket_id: @sprint.bucket.id)
+    end
+
+    let(:query) do
+      "
+        query ($projectId: ID!) {
+          project(projectId: $projectId) {
+            currentSprint {
+              id
+              name
+              version
+              issueList {
+                issues {
+                  id
+                  title
+                  description
+                }
+              }
+            }
+          }
+        }
+      "
+    end
+
+    it "work" do
+      post "/graphql",
+        params: {
+          query: query,
+          variables: {
+            projectId: @project.id
+          }
+        }.to_json, headers: user_headers
+      expect(response.status).to eq 200
+      expect(response.body).to include_json({
+        data: {
+          project: {
+            currentSprint: {
+              id: @sprint.id,
+              name: @sprint.name,
+              version: @sprint.version,
+              issueList: {
+                issues: [{
+                  id: @issue.id
+                }]
+              }
+            }
+          }
+        }
+      })
+    end
+  end
 end

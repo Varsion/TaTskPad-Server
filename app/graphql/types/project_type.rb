@@ -6,6 +6,7 @@ module Types
     field :status, String, null: false
     field :logo_url, String, null: true
     field :key_word, String, null: true
+    field :current_sprint, Types::SprintType, null: true
     field :buckets, [Types::BucketType], null: true
     field :knowledge_base, [Types::KnowledgeBaseType], null: true
     field :customize_fields, [Types::CustomizeFieldType], null: false

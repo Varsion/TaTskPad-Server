@@ -3,5 +3,6 @@ module Types
     field :id, ID, null: false
     field :name, String, null: false
     field :is_release, Boolean, null: false
+    field :issues, [Types::IssueType], null: true
   end
 end
