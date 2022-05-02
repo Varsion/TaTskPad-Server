@@ -7,6 +7,7 @@ module Types
     field :organization_class, String, null: false
     field :status, String, null: false
     field :owner, Types::AccountType, null: false
+    field :members, [Types::AccountType], null: false
     field :projects, [Types::ProjectType], null: false
     field :roles, [Types::RoleType], null: false
 
@@ -16,6 +17,10 @@ module Types
 
     def owner
       object.owner.account
+    end
+
+    def members
+      object.accounts
     end
   end
 end

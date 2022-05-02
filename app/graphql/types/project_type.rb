@@ -12,7 +12,6 @@ module Types
     field :customize_fields, [Types::CustomizeFieldType], null: false
     field :workflow_steps, [Types::WorkflowStepType], null: false
 
-
     def logo_url
       object.logo.attached? ? Rails.application.routes.url_helpers.url_for(object.logo) : ""
     end
