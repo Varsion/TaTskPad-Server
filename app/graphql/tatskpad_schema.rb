@@ -4,10 +4,7 @@ class TatskpadSchema < GraphQL::Schema
     field :organization, resolver: Resolvers::OrganizationResolver
     field :project, resolver: Resolvers::ProjectResolver
     field :issue, resolver: Resolvers::IssueResolver
-    # field :knowledge_base, resolver: Resolvers::KnowledgeBaseResolver
-    # field :document, resolver: Resolvers::DocumentResolver
-    # field :kanban_board, resolver: Resolvers::KanbanBoardResolver
-    # field :sprint, resolver: Resolvers::SprintResolver
+    field :knowledge_base, resolver: Resolvers::KnowledgeBaseResolver
   end
 
   class Mutation < Types::Base::Object
