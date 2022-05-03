@@ -4,6 +4,7 @@ module Mutations
     argument :key_number, String, required: false
     argument :assignee_id, ID, required: false
     argument :title, String, required: false
+    argument :status, String, required: false
     argument :description, String, required: false
     argument :priority, String, required: false
     argument :genre, String, required: false
