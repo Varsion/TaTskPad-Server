@@ -1,6 +1,7 @@
 module Mutations
   class UpdateIssue < Mutations::BaseMutation
-    argument :id, ID, required: true
+    argument :id, ID, required: false
+    argument :key_number, String, required: false
     argument :assignee_id, ID, required: false
     argument :title, String, required: false
     argument :description, String, required: false
@@ -17,7 +18,23 @@ module Mutations
     def resolve(input)
       customize_fields = input.delete(:customize_fields)
 
-      issue = Issue.find_by(id: input.delete(:id))
+      if input[:id].present?
+        issue = Issue.find_by(id: input.delete(:id))
+      elsif input[:key_number].present?
+        issue = Issue.find_by(key_number: input.delete(:key_number))
+      else
+        issue = nil
+      end
+
+      if issue.nil?
+        return {
+          errors: [{
+            attribute: "issue",
+            message: "is no found"
+          }]
+        }
+      end
+
       issue.update(input)
       issue.customize_fields = customize_fields.to_json unless customize_fields.nil?
 

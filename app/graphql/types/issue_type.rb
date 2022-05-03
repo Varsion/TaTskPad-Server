@@ -7,6 +7,7 @@ module Types
     field :author, Types::AccountType, null: false
     field :assignee, Types::AccountType, null: true
     field :keyNumber, String, null: false
+    field :status, String, null: false
     field :genre, String, null: false
     field :priority, String, null: false
     field :estimate, String, null: true
