@@ -91,6 +91,7 @@ RSpec.describe "GraphQL - Issue Query", type: :request do
           title
           comments {
             content
+            createdAt
           }
         }
       }
