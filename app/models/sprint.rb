@@ -1,4 +1,4 @@
 class Sprint < ApplicationRecord
   belongs_to :project
-  has_one :bucket
+  belongs_to :bucket
 end

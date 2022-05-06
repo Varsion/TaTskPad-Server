@@ -9,6 +9,7 @@ RSpec.describe "GraphQL - Create Sprint Mutations", type: :request do
     @organization = create(:organization)
     create(:membership, account: @account, organization: @organization, role: "owner")
     @project = create(:project, organization: @organization)
+    @bucket = create(:bucket, project: @project)
   end
 
   let(:query) do
@@ -41,7 +42,8 @@ RSpec.describe "GraphQL - Create Sprint Mutations", type: :request do
           input: {
             projectId: @project.id,
             name: "Test Sprint",
-            version: "1.0"
+            version: "1.0",
+            bucketId: @bucket.id
           }
         }
       }.to_json, headers: user_headers
@@ -52,7 +54,7 @@ RSpec.describe "GraphQL - Create Sprint Mutations", type: :request do
           sprint: {
             name: "Test Sprint",
             issueList: {
-              name: "Test Sprint 1.0"
+              id: @bucket.id,
             }
           }
         }

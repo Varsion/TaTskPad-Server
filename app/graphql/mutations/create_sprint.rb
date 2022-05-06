@@ -3,6 +3,7 @@ module Mutations
     argument :project_id, ID, required: true
     argument :name, String, required: true
     argument :version, String, required: true
+    argument :bucket_id, ID, required: true
 
 
     field :sprint, Types::SprintType, null: true
