@@ -4,6 +4,7 @@ module Types
     field :id, ID, null: false
     field :name, String, null: false
     field :description, String, null: false
+    field :active, Boolean, null: false
     field :permissions, [Types::PermissionType], null: false
     
     def permissions
