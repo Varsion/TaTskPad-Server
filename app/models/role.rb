@@ -41,7 +41,6 @@ class Role < ApplicationRecord
     permission_scopes
   end
 
-
   private
 
   def scope_consistent
