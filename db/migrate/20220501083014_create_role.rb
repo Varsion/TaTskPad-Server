@@ -3,6 +3,7 @@ class CreateRole < ActiveRecord::Migration[6.1]
     create_table :roles, id: :uuid do |t|
       t.string :name, null: false
       t.belongs_to :organization, type: :uuid, null: false
+      t.boolean :active, null: false, default: true
       t.string :description
       t.jsonb :permissions, null: false, default: {}
       t.timestamps

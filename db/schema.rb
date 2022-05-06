@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 2022_05_01_083014) do
   create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.uuid "organization_id", null: false
+    t.boolean "active", default: true, null: false
     t.string "description"
     t.jsonb "permissions", default: {}, null: false
     t.datetime "created_at", precision: 6, null: false
