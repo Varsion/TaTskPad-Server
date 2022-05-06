@@ -8,7 +8,8 @@ RSpec.describe "GraphQL - Start Sprint Mutations", type: :request do
     @organization = create(:organization)
     @project = create(:project, organization: @organization)
     create(:membership, account: @account, organization: @organization, role: "owner")
-    @sprint = create(:sprint, project: @project)
+    @bucket = create(:bucket, project: @project)
+    @sprint = create(:sprint, project: @project, is_current: true, bucket: @bucket)
   end
 
   let(:query) do
@@ -51,7 +52,8 @@ RSpec.describe "GraphQL - Start Sprint Mutations", type: :request do
   end
 
   it "has a progressing sprint" do
-    sprint = create(:sprint, project: @project, is_current: true)
+    bucket = create(:bucket, project: @project)
+    sprint = create(:sprint, project: @project, is_current: true, bucket: bucket)
     post "/graphql",
       params: {
         query: query, 
@@ -65,10 +67,9 @@ RSpec.describe "GraphQL - Start Sprint Mutations", type: :request do
     expect(response.body).to include_json({
       data: {
         startSprint: {
-          errors: [{
-            attribute: "sprint",
-            message: "Current Sprint is not over yet"
-          }]
+          sprint: {
+            isCurrent: true
+          }
         }
       }
     })

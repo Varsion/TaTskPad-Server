@@ -9,7 +9,7 @@ module Mutations
       authenticate_user!
       sprint = Sprint.find_by(id: input[:id])
       project = sprint.project
-      if project.current_sprint.present?
+      if project.current_sprint.present? && project.current_sprint != sprint
         return {
           errors: [{
             attribute: "sprint",

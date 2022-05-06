@@ -8,7 +8,8 @@ RSpec.describe "GraphQL - End Sprint Mutations", type: :request do
     @organization = create(:organization)
     @project = create(:project, organization: @organization)
     create(:membership, account: @account, organization: @organization, role: "owner")
-    @sprint = create(:sprint, project: @project, is_current: true)
+    @bucket = create(:bucket, project: @project)
+    @sprint = create(:sprint, project: @project, is_current: true, bucket: @bucket)
   end
 
   let(:query) do
