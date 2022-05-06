@@ -94,4 +94,43 @@ RSpec.describe "GraphQL - Get Organization Query", type: :request do
       })
     end
   end
+
+  context "Role" do
+    before :each do
+      @role = create(:role, organization: @organization)
+    end
+    let(:query) do
+      "
+      query ($organizationId: ID!) {
+        organization(organizationId: $organizationId) {
+          roles {
+            id
+            name
+            active
+          }
+        }
+      }
+      "
+    end
+
+    it "work" do
+      post "/graphql",
+        params: {
+          query: query,
+          variables: {
+            organizationId: @organization.id
+          }
+        }.to_json, headers: user_headers
+      expect(response.status).to eq 200
+      expect(response.body).to  include_json({
+        data: {
+          organization: {
+            roles: [{
+              id: @role.id
+            }]
+          }
+        }
+      })
+    end
+  end
 end
