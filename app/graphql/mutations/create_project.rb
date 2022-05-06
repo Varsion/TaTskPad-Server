@@ -2,6 +2,7 @@ module Mutations
   class CreateProject < Mutations::BaseMutation
     argument :organization_id, ID, required: true
     argument :name, String, required: true
+    argument :code_url, String, required: false
     argument :key_word, String, required: true, 
       prepare: ->(key_word, ctx) {
         key_word.upcase
