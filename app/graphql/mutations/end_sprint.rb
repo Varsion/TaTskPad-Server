@@ -12,7 +12,7 @@ module Mutations
       if sprint.update(is_current: false)
         {sprint: sprint}
       else
-        errors = Types::Base::ModelError.errors_of(org)
+        errors = Types::Base::ModelError.errors_of(sprint)
         {errors: errors}
       end
     end
