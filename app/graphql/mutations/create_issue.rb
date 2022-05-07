@@ -1,6 +1,7 @@
 module Mutations
   class CreateIssue < Mutations::BaseMutation
     argument :title, String, required: true
+    argument :bucket_id, ID, required: false
     argument :description, String, required: false
     argument :project_id, ID, required: true
     argument :priority, String, required: true

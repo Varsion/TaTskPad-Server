@@ -106,4 +106,41 @@ RSpec.describe "GraphQL - Create Issue Mutations", type: :request do
       }
     })
   end
+
+  it "work with designation bucket" do
+    bucket = create(:bucket, project: @project)
+    post "/graphql",
+      params: {
+        query: query, 
+        variables: {
+          input: {
+            title: "word!",
+            bucketId: bucket.id,
+            description: "word!",
+            projectId: @project.id,
+            priority: "p2",
+            genre: "bug"
+          }
+        }
+      }.to_json, headers: user_headers
+    expect(Issue.first.bucket).to eq(bucket)
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        createIssue: {
+          issue: {
+            title: "word!",
+            description: "word!",
+            project: {
+              id: @project.id
+            },
+            author: {
+              id: @account.id
+            },
+            genre: "bug"
+          }
+        }
+      }
+    })
+  end
 end

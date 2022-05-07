@@ -35,6 +35,7 @@ class Issue < ApplicationRecord
   validates :histories, store_model: { merge_errors: true }
 
   def throw_in_backlog
+    return if self.bucket_id.present?
     self.bucket_id = project.backlog.id
     self.save
   end
