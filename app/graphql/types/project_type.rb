@@ -9,7 +9,8 @@ module Types
     field :code_url, String, null: true
     field :current_sprint, Types::SprintType, null: true
     field :buckets, [Types::BucketType], null: true
-    field :knowledge_base, [Types::KnowledgeBaseType], null: true
+    field :knowledge_bases, [Types::KnowledgeBaseType], null: true
+    field :default_knowledge_base, Types::KnowledgeBaseType, null: true
     field :customize_fields, [Types::CustomizeFieldType], null: false
     field :workflow_steps, [Types::WorkflowStepType], null: false
 
