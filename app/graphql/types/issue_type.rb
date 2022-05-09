@@ -11,6 +11,7 @@ module Types
     field :genre, String, null: false
     field :priority, String, null: false
     field :estimate, String, null: true
+    field :bucket_id, String, null: true
     field :customize_fields, [Types::CustomizeFieldType], null: true
     field :histories, [Types::HistoryType], null: true
     field :comments, [Types::CommentType], null: true
