@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cd /home/app
+# # quite sidekiq
+SIDEKIQ_PID=$(ps aux | grep sidekiq | grep busy | awk '{ print $2 }')
+kill -SIGTSTP $SIDEKIQ_PID
+
+# run migration
+bundle exec rake db:migrate RAILS_ENV=production
+
+# start sidekiq
+bundle exec sidekiq -e production -d -L log/sidekiq.log &
+
+# start rails server
+bundle exec puma config.ru -e production
+
