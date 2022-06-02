@@ -19,12 +19,10 @@ module Mutations
     def resolve(input)
       customize_fields = input.delete(:customize_fields)
 
-      if input[:id].present?
-        issue = Issue.find_by(id: input.delete(:id))
+      issue = if input[:id].present?
+        Issue.find_by(id: input.delete(:id))
       elsif input[:key_number].present?
-        issue = Issue.find_by(key_number: input.delete(:key_number))
-      else
-        issue = nil
+        Issue.find_by(key_number: input.delete(:key_number))
       end
 
       if issue.nil?

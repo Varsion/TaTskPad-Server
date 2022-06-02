@@ -3,7 +3,6 @@
 require "rails_helper"
 
 RSpec.describe "GraphQL - Sign Up Mutations", type: :request do
-
   let(:query) do
     "
       mutation signUp($input: SignUpInput!) {
@@ -24,7 +23,7 @@ RSpec.describe "GraphQL - Sign Up Mutations", type: :request do
   it "Works!" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             email: "123@exmaple.com",
@@ -33,23 +32,23 @@ RSpec.describe "GraphQL - Sign Up Mutations", type: :request do
           }
         }
       }.to_json, headers: basic_headers
-      expect(response.status).to eq 200
-      expect(response.body).to include_json({
-        data: {
-          signUp:{
-            account: {
-              email: "123@exmaple.com"
-            }
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        signUp: {
+          account: {
+            email: "123@exmaple.com"
           }
         }
-      })
+      }
+    })
   end
 
   it "Fails! Same Email" do
     account = create :account
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             email: account.email,
@@ -62,7 +61,7 @@ RSpec.describe "GraphQL - Sign Up Mutations", type: :request do
     expect(Account.count).to eq 1
     expect(response.body).to include_json({
       data: {
-        signUp:{
+        signUp: {
           errors: [
             {
               attribute: "email",

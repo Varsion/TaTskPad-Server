@@ -28,7 +28,7 @@ RSpec.describe "GraphQL - Sign In Mutations", type: :request do
   it "Works!" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             email: @account.email,
@@ -39,7 +39,7 @@ RSpec.describe "GraphQL - Sign In Mutations", type: :request do
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {
-        signIn:{
+        signIn: {
           account: {
             email: @account.email,
             token: /\w+/
@@ -52,7 +52,7 @@ RSpec.describe "GraphQL - Sign In Mutations", type: :request do
   it "password fails" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             email: @account.email,
@@ -60,17 +60,17 @@ RSpec.describe "GraphQL - Sign In Mutations", type: :request do
           }
         }
       }.to_json, headers: basic_headers
-      expect(response.status).to eq 200
-      expect(response.body).to include_json({
-        data: {
-          signIn:{
-            account: nil,
-            errors: [{
-              attribute: "account",
-              message: "Please check email and password"
-            }]
-          }
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        signIn: {
+          account: nil,
+          errors: [{
+            attribute: "account",
+            message: "Please check email and password"
+          }]
         }
-      })
+      }
+    })
   end
 end

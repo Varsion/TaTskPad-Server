@@ -4,8 +4,8 @@ class CreateIssue < ActiveRecord::Migration[6.1]
       t.string :title, null: false
       t.text :description
       t.belongs_to :project, type: :uuid, null: false, foreign_key: true
-      t.belongs_to :author, type: :uuid, null: false, foreign_key: { to_table: :accounts }
-      t.belongs_to :assignee, type: :uuid, foreign_key: { to_table: :accounts }
+      t.belongs_to :author, type: :uuid, null: false, foreign_key: {to_table: :accounts}
+      t.belongs_to :assignee, type: :uuid, foreign_key: {to_table: :accounts}
       t.string :status, null: false, default: "backlog"
       t.string :priority, null: false, default: "p2"
       t.string :genre, null: false, default: "story"

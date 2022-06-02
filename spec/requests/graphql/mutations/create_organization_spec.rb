@@ -30,7 +30,7 @@ RSpec.describe "GraphQL - Create Organization Mutations", type: :request do
   it "Works!" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             name: "Test Org",
@@ -40,33 +40,33 @@ RSpec.describe "GraphQL - Create Organization Mutations", type: :request do
           }
         }
       }, headers: user_headers
-      expect(response.status).to eq 200
-      expect(Organization.first.owner.account).to eq @account
-      expect(response.body).to include_json({
-        data: {
-          createOrganization: {
-            organization: {
-              organizationClass: "Personal",
-              name: "Test Org",
-              email: "123@exm.com"
-            }
+    expect(response.status).to eq 200
+    expect(Organization.first.owner.account).to eq @account
+    expect(response.body).to include_json({
+      data: {
+        createOrganization: {
+          organization: {
+            organizationClass: "Personal",
+            name: "Test Org",
+            email: "123@exm.com"
           }
         }
-      })
+      }
+    })
   end
 
   it "Work without logo" do
     post "/graphql",
-    params: {
-      query: query, 
-      variables: {
-        input: {
-          name: "Test Org",
-          email: "123@exm.com",
-          organizationClass: "Personal"
+      params: {
+        query: query,
+        variables: {
+          input: {
+            name: "Test Org",
+            email: "123@exm.com",
+            organizationClass: "Personal"
+          }
         }
-      }
-    }.to_json, headers: user_headers
+      }.to_json, headers: user_headers
     expect(response.status).to eq 200
     expect(Organization.first.owner.account).to eq @account
     expect(response.body).to include_json({

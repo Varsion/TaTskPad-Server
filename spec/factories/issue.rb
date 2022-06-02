@@ -5,7 +5,7 @@ FactoryBot.define do
     key_number { Faker::Number.number(digits: 5) }
     customize_fields do
       context = []
-      context << { name: "test", type: "string", value: "test" }
+      context << {name: "test", type: "string", value: "test"}
       context
     end
     author

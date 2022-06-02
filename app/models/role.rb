@@ -2,7 +2,7 @@ class Role < ApplicationRecord
   belongs_to :organization
   before_save :scope_consistent
 
-  validates :name, presence: true, uniqueness: { scope: :organization_id }
+  validates :name, presence: true, uniqueness: {scope: :organization_id}
 
   class Permissions
     include StoreModel::Model

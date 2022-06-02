@@ -96,9 +96,9 @@ RSpec.describe "GraphQL - Create Project Mutations", type: :request do
       }.to_json, headers: user_headers(account: @account_2)
     expect(response.status).to eq 200
     expect(response.body).to include_json({
-      data: { createProject: nil },
+      data: {createProject: nil},
       errors: [{
-        message: "You are not a member of this organization",
+        message: "You are not a member of this organization"
       }]
     })
   end

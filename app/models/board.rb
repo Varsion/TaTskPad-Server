@@ -10,10 +10,9 @@ class Board < ApplicationRecord
 
   attribute :columns, Column.to_array_type
 
-
   def init_columns
     project.workflow_steps.each do |step|
-      self.columns << {name: step.name, description: step.description}
+      columns << {name: step.name, description: step.description}
     end
   end
 end

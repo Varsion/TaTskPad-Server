@@ -40,12 +40,11 @@ RSpec.describe "GraphQL - Account Query", type: :request do
         project: {
           id: @project.id,
           name: @project.name,
-          workflowSteps: @project.workflow_steps.as_json,
+          workflowSteps: @project.workflow_steps.as_json
         }
       }
     })
   end
-
 
   it "get empty!" do
     post "/graphql",

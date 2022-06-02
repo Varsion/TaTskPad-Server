@@ -1,8 +1,7 @@
-
 require "rails_helper"
 
 RSpec.describe "GraphQL - Update Issue Mutations", type: :request do
-  before :each  do
+  before :each do
     @account = create(:account)
     @organization = create(:organization)
     @project = create(:project, organization: @organization)
@@ -48,7 +47,7 @@ RSpec.describe "GraphQL - Update Issue Mutations", type: :request do
   it "work! just update title" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             id: @issue.id,
@@ -72,7 +71,7 @@ RSpec.describe "GraphQL - Update Issue Mutations", type: :request do
   it "work! just assignee" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             id: @issue.id,
@@ -97,7 +96,7 @@ RSpec.describe "GraphQL - Update Issue Mutations", type: :request do
   it "just move bucket" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             id: @issue.id,
@@ -119,32 +118,32 @@ RSpec.describe "GraphQL - Update Issue Mutations", type: :request do
 
   it "issue is no found" do
     post "/graphql",
-    params: {
-      query: query, 
-      variables: {
-        input: {
-          bucketId: @bucket.id
+      params: {
+        query: query,
+        variables: {
+          input: {
+            bucketId: @bucket.id
+          }
+        }
+      }.to_json, headers: user_headers
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        updateIssue: {
+          issue: nil,
+          errors: [{
+            attribute: "issue",
+            message: "is no found"
+          }]
         }
       }
-    }.to_json, headers: user_headers
-  expect(response.status).to eq 200
-  expect(response.body).to include_json({
-    data: {
-      updateIssue: {
-        issue: nil,
-        errors: [{
-          attribute: "issue",
-          message: "is no found"
-        }]
-      }
-    }
-  })
+    })
   end
 
   it "just move bucket with key_number" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             keyNumber: @issue.key_number,

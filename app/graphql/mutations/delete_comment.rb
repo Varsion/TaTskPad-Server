@@ -14,7 +14,7 @@ module Mutations
 
       comment.delete
 
-      { comment: comment }
+      {comment: comment}
     end
   end
 end

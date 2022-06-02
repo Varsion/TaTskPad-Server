@@ -26,14 +26,14 @@ RSpec.describe "GraphQL - Archive Knowledge Base Mutations", type: :request do
 
   it "Archive KnowledgeBase successfully" do
     post "/graphql",
-    params: {
-      query: query, 
-      variables: {
-        input: {
-          id: @document.id
+      params: {
+        query: query,
+        variables: {
+          input: {
+            id: @document.id
+          }
         }
-      }
-    }.to_json, headers: user_headers
+      }.to_json, headers: user_headers
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {

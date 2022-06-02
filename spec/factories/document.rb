@@ -5,7 +5,7 @@ FactoryBot.define do
     knowledge_base
 
     after(:create) do |document|
-      document.contributors << { id: create(:account).id }
+      document.contributors << {id: create(:account).id}
       document.save
     end
   end

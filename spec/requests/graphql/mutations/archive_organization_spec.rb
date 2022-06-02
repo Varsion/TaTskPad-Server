@@ -32,14 +32,14 @@ RSpec.describe "GraphQL - Archive Organization Mutations", type: :request do
 
   it "No permissions" do
     post "/graphql",
-    params: {
-      query: query, 
-      variables: {
-        input: {
-          organizationId: @organization.id
+      params: {
+        query: query,
+        variables: {
+          input: {
+            organizationId: @organization.id
+          }
         }
-      }
-    }.to_json, headers: user_headers(account: @account_2)
+      }.to_json, headers: user_headers(account: @account_2)
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {
@@ -47,8 +47,8 @@ RSpec.describe "GraphQL - Archive Organization Mutations", type: :request do
       },
       errors: [
         {
-          message: "No permissions", 
-          path:["archiveOrganization"]
+          message: "No permissions",
+          path: ["archiveOrganization"]
         }
       ]
     })
@@ -56,14 +56,14 @@ RSpec.describe "GraphQL - Archive Organization Mutations", type: :request do
 
   it "Archive organization successfully" do
     post "/graphql",
-    params: {
-      query: query, 
-      variables: {
-        input: {
-          organizationId: @organization.id
+      params: {
+        query: query,
+        variables: {
+          input: {
+            organizationId: @organization.id
+          }
         }
-      }
-    }.to_json, headers: user_headers
+      }.to_json, headers: user_headers
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {

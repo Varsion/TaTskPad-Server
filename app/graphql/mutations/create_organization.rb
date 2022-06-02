@@ -18,10 +18,10 @@ module Mutations
       org.upload_logo(input[:logo])
       org.set_owner(current_account)
       if org.save && org.errors.blank?
-        { organization: org }
+        {organization: org}
       else
         errors = Types::Base::ModelError.errors_of(org)
-        { errors: errors }
+        {errors: errors}
       end
     end
   end

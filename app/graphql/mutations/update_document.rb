@@ -16,11 +16,11 @@ module Mutations
       unless document.contributors.include?(new_contributor)
         document.contributors << new_contributor
       end
-      
+
       if document.save && document.errors.blank?
-        { document: document }
+        {document: document}
       else
-        { errors: Types::Base::ModelError.errors_of(document) }
+        {errors: Types::Base::ModelError.errors_of(document)}
       end
     end
   end

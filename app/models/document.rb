@@ -11,5 +11,4 @@ class Document < ApplicationRecord
   def archive!
     update(archived: true)
   end
-  
 end

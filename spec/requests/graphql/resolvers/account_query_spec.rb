@@ -23,24 +23,24 @@ RSpec.describe "GraphQL - Account Query", type: :request do
   it "Works!" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {}
       }.to_json, headers: user_headers
-      expect(response.status).to eq 200
-      expect(response.body).to include_json({
-        data: {
-          account: {
-            id: @account.id,
-            name: @account.name,
-            email: @account.email
-          }
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        account: {
+          id: @account.id,
+          name: @account.name,
+          email: @account.email
         }
-      })
+      }
+    })
   end
 
   context "organization" do
     let(:query) do
-      "      
+      "
       query account {
         account {
           id
@@ -59,7 +59,7 @@ RSpec.describe "GraphQL - Account Query", type: :request do
       create(:membership, account: @account, organization: @organization, role: "owner")
       post "/graphql",
         params: {
-          query: query, 
+          query: query,
           variables: {}
         }.to_json, headers: user_headers
       expect(response.status).to eq 200
@@ -76,5 +76,4 @@ RSpec.describe "GraphQL - Account Query", type: :request do
       })
     end
   end
-  
 end

@@ -54,7 +54,7 @@ RSpec.describe "GraphQL - Create Sprint Mutations", type: :request do
           sprint: {
             name: "Test Sprint",
             issueList: {
-              id: @bucket.id,
+              id: @bucket.id
             }
           }
         }

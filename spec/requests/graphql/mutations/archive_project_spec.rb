@@ -37,7 +37,7 @@ RSpec.describe "GraphQL - Archive Organization Mutations", type: :request do
   it "No permissions" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             projectId: @project.id
@@ -51,8 +51,8 @@ RSpec.describe "GraphQL - Archive Organization Mutations", type: :request do
       },
       errors: [
         {
-          message: "No permissions", 
-          path:["archiveProject"]
+          message: "No permissions",
+          path: ["archiveProject"]
         }
       ]
     })
@@ -62,7 +62,7 @@ RSpec.describe "GraphQL - Archive Organization Mutations", type: :request do
     account = [@account, @account_2].sample
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             projectId: @project.id

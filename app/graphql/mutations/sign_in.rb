@@ -19,8 +19,8 @@ module Mutations
         }
       end
 
-      return {
-          errors: [{
+      {
+        errors: [{
           attribute: "account",
           message: "Please check email and password"
         }]

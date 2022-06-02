@@ -29,19 +29,19 @@ class Issue < ApplicationRecord
   end
 
   attribute :customize_fields, CustomizeFields.to_array_type
-  validates :customize_fields, store_model: { merge_errors: true }
+  validates :customize_fields, store_model: {merge_errors: true}
 
   attribute :histories, Histories.to_array_type
-  validates :histories, store_model: { merge_errors: true }
+  validates :histories, store_model: {merge_errors: true}
 
   def throw_in_backlog
-    return if self.bucket_id.present?
+    return if bucket_id.present?
     self.bucket_id = project.backlog.id
-    self.save
+    save
   end
 
   def generate_key_number
-    count = self.project.issues.count
+    count = project.issues.count
     project.key_word + "-" + (count + 1).to_s
   end
 end

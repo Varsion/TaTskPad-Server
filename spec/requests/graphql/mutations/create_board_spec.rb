@@ -1,8 +1,7 @@
-
 require "rails_helper"
 
 RSpec.describe "GraphQL - Create Board Mutations", type: :request do
-  before :each  do
+  before :each do
     @account = create(:account)
     @organization = create(:organization)
     @project = create(:project, organization: @organization)
@@ -28,7 +27,7 @@ RSpec.describe "GraphQL - Create Board Mutations", type: :request do
   it "work!" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             projectId: @project.id,

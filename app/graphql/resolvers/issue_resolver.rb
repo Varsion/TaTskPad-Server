@@ -7,13 +7,10 @@ module Resolvers
     def resolve(input)
       authenticate_user!
       if input[:issue_id].present?
-        issue = Issue.find_by(id: input[:issue_id])
+        Issue.find_by(id: input[:issue_id])
       elsif input[:key_number].present?
-        issue = Issue.find_by(key_number: input[:key_number])
-      else
-        issue = nil
+        Issue.find_by(key_number: input[:key_number])
       end
-      issue
     end
   end
 end

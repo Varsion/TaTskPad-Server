@@ -3,7 +3,7 @@ module Mutations
     argument :organization_id, ID, required: true
     argument :name, String, required: true
     argument :code_url, String, required: false
-    argument :key_word, String, required: true, 
+    argument :key_word, String, required: true,
       prepare: ->(key_word, ctx) {
         key_word.upcase
       }
@@ -23,10 +23,10 @@ module Mutations
       project.init_workflow_steps
       project.upload_logo(input[:logo])
       if project.save && project.errors.blank?
-        { project: project }
+        {project: project}
       else
         errors = Types::Base::ModelError.errors_of(project)
-        { errors: errors }
+        {errors: errors}
       end
     end
   end

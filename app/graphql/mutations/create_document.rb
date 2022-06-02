@@ -23,7 +23,7 @@ module Mutations
         knowledge_base_id: knowledge_base_id
       )
 
-      document.contributors << { id: current_account.id }
+      document.contributors << {id: current_account.id}
 
       if document.save && document.errors.blank?
         {

@@ -122,7 +122,7 @@ RSpec.describe "GraphQL - Get Organization Query", type: :request do
           }
         }.to_json, headers: user_headers
       expect(response.status).to eq 200
-      expect(response.body).to  include_json({
+      expect(response.body).to include_json({
         data: {
           organization: {
             roles: [{

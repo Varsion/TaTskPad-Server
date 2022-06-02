@@ -1,8 +1,7 @@
-
 require "rails_helper"
 
 RSpec.describe "GraphQL - Update Document Mutations", type: :request do
-  before :each  do
+  before :each do
     @account = create(:account)
     @organization = create(:organization)
     @project = create(:project, organization: @organization)
@@ -35,7 +34,7 @@ RSpec.describe "GraphQL - Update Document Mutations", type: :request do
   it "work! just update title" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             id: @document.id,
@@ -60,7 +59,7 @@ RSpec.describe "GraphQL - Update Document Mutations", type: :request do
   it "work! move to another knowledge base" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             id: @document.id,

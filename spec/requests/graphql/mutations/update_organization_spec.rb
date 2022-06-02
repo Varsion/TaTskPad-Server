@@ -36,7 +36,7 @@ RSpec.describe "GraphQL - Update Organization Mutations", type: :request do
   it "Organization not found!" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             organizationId: Faker::Internet.uuid,
@@ -46,31 +46,31 @@ RSpec.describe "GraphQL - Update Organization Mutations", type: :request do
           }
         }
       }.to_json, headers: user_headers
-      expect(response.status).to eq 200
-      expect(response.body).to include_json({
-        data: {
-          updateOrganization: {
-            errors: [{
-              message: "Organization not found"
-            }]
-          }
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        updateOrganization: {
+          errors: [{
+            message: "Organization not found"
+          }]
         }
-      })
+      }
+    })
   end
 
   it "No permissions" do
     post "/graphql",
-    params: {
-      query: query, 
-      variables: {
-        input: {
-          organizationId: @organization.id,
-          name: "hello",
-          email: "hello@exm.com",
-          organizationClass: "Personal"
+      params: {
+        query: query,
+        variables: {
+          input: {
+            organizationId: @organization.id,
+            name: "hello",
+            email: "hello@exm.com",
+            organizationClass: "Personal"
+          }
         }
-      }
-    }.to_json, headers: user_headers(account: @account_2)
+      }.to_json, headers: user_headers(account: @account_2)
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {
@@ -78,8 +78,8 @@ RSpec.describe "GraphQL - Update Organization Mutations", type: :request do
       },
       errors: [
         {
-          message: "No permissions", 
-          path:["updateOrganization"]
+          message: "No permissions",
+          path: ["updateOrganization"]
         }
       ]
     })
@@ -87,17 +87,17 @@ RSpec.describe "GraphQL - Update Organization Mutations", type: :request do
 
   it "Update organization successfully" do
     post "/graphql",
-    params: {
-      query: query, 
-      variables: {
-        input: {
-          organizationId: @organization.id,
-          name: "hello",
-          email: "hello@exm.com",
-          organizationClass: "Personal"
+      params: {
+        query: query,
+        variables: {
+          input: {
+            organizationId: @organization.id,
+            name: "hello",
+            email: "hello@exm.com",
+            organizationClass: "Personal"
+          }
         }
-      }
-    }.to_json, headers: user_headers
+      }.to_json, headers: user_headers
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {

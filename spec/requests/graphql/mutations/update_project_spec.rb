@@ -34,17 +34,17 @@ RSpec.describe "GraphQL - Update Project Mutations", type: :request do
 
   it "No permissions" do
     post "/graphql",
-    params: {
-      query: query, 
-      variables: {
-        input: {
-          projectId: @project.id,
-          name: "hello-project",
-          versionFormat: "semver",
-          projectClass: "software"
+      params: {
+        query: query,
+        variables: {
+          input: {
+            projectId: @project.id,
+            name: "hello-project",
+            versionFormat: "semver",
+            projectClass: "software"
+          }
         }
-      }
-    }.to_json, headers: user_headers(account: @account_2)
+      }.to_json, headers: user_headers(account: @account_2)
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {
@@ -52,8 +52,8 @@ RSpec.describe "GraphQL - Update Project Mutations", type: :request do
       },
       errors: [
         {
-          message: "No permissions", 
-          path:["updateProject"]
+          message: "No permissions",
+          path: ["updateProject"]
         }
       ]
     })
@@ -62,7 +62,7 @@ RSpec.describe "GraphQL - Update Project Mutations", type: :request do
   it "Update project successfully" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             projectId: @project.id,

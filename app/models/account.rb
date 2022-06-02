@@ -12,9 +12,9 @@ class Account < ApplicationRecord
   def login
     JWT.encode({
       account_id: id,
-      created_at: DateTime.now.strftime("%Q")},
-      Rails.application.credentials.secret_key_base
-    )
+      created_at: DateTime.now.strftime("%Q")
+    },
+      Rails.application.credentials.secret_key_base)
   end
 
   def verify_account(code)

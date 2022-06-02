@@ -29,7 +29,7 @@ RSpec.describe "GraphQL - Update Account Mutations", type: :request do
   it "Works!" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             name: "new_name",
@@ -37,42 +37,42 @@ RSpec.describe "GraphQL - Update Account Mutations", type: :request do
           }
         }
       }, headers: user_headers
-      expect(response.status).to eq 200
-      expect(response.body).to include_json({
-        data: {
-          updateAccount: {
-            account: {
-              id: @account.id,
-              email: @account.email,
-              name: "new_name"
-            }
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        updateAccount: {
+          account: {
+            id: @account.id,
+            email: @account.email,
+            name: "new_name"
           }
         }
-      })
+      }
+    })
   end
 
   it "Works! no upload avatar" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             name: "new_name"
           }
         }
       }.to_json, headers: user_headers
-      expect(response.status).to eq 200
-      expect(response.body).to include_json({
-        data: {
-          updateAccount: {
-            account: {
-              id: @account.id,
-              email: @account.email,
-              name: "new_name",
-              avatar: "https://ui-avatars.com/api/?name=new_name"
-            }
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        updateAccount: {
+          account: {
+            id: @account.id,
+            email: @account.email,
+            name: "new_name",
+            avatar: "https://ui-avatars.com/api/?name=new_name"
           }
         }
-      })
+      }
+    })
   end
 end

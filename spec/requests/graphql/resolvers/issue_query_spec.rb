@@ -9,7 +9,6 @@ RSpec.describe "GraphQL - Issue Query", type: :request do
     @project = create(:project, organization: @organization)
     create(:membership, account: @account, organization: @organization, role: "owner")
     @issue = create(:issue, project: @project, author: @account)
-    
   end
 
   context "issues" do
@@ -34,49 +33,47 @@ RSpec.describe "GraphQL - Issue Query", type: :request do
     it "Works with issue_id" do
       post "/graphql",
         params: {
-          query: query, 
+          query: query,
           variables: {
             issueId: @issue.id
           }
         }.to_json, headers: user_headers
-        expect(response.status).to eq 200
-        expect(response.body).to include_json({
-          data: {
-            issue: {
-              id: @issue.id,
-              customizeFields: [{
-                name: "test",
-                value: "test"
-              }]
-            }
+      expect(response.status).to eq 200
+      expect(response.body).to include_json({
+        data: {
+          issue: {
+            id: @issue.id,
+            customizeFields: [{
+              name: "test",
+              value: "test"
+            }]
           }
-        })
+        }
+      })
     end
 
     it "Works with issue_id" do
       post "/graphql",
         params: {
-          query: query, 
+          query: query,
           variables: {
             keyNumber: @issue.key_number
           }
         }.to_json, headers: user_headers
-        expect(response.status).to eq 200
-        expect(response.body).to include_json({
-          data: {
-            issue: {
-              id: @issue.id,
-              customizeFields: [{
-                name: "test",
-                value: "test"
-              }]
-            }
+      expect(response.status).to eq 200
+      expect(response.body).to include_json({
+        data: {
+          issue: {
+            id: @issue.id,
+            customizeFields: [{
+              name: "test",
+              value: "test"
+            }]
           }
-        })
+        }
+      })
     end
   end
-  
-
 
   context "comments" do
     before :each do
@@ -101,7 +98,7 @@ RSpec.describe "GraphQL - Issue Query", type: :request do
     it "Works!" do
       post "/graphql",
         params: {
-          query: query, 
+          query: query,
           variables: {
             issueId: @issue.id
           }

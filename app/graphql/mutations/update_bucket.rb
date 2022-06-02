@@ -9,7 +9,7 @@ module Mutations
     def resolve(input)
       authenticate_user!
       bucket = Bucket.find_by(id: input[:id])
-      return { errors: [{ path: [], message: "Bucket not found" }] } unless bucket
+      return {errors: [{path: [], message: "Bucket not found"}]} unless bucket
 
       organization = bucket.project.organization
 

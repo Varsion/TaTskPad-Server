@@ -45,5 +45,4 @@ RSpec.describe "GraphQL - Role Query", type: :request do
       }
     })
   end
-
 end

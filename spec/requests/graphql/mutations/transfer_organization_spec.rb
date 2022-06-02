@@ -37,7 +37,7 @@ RSpec.describe "GraphQL - Transfer Organization Mutations", type: :request do
   it "No permissions" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             organizationId: @organization.id,
@@ -52,8 +52,8 @@ RSpec.describe "GraphQL - Transfer Organization Mutations", type: :request do
       },
       errors: [
         {
-          message: "No permissions", 
-          path:["transferOrganization"]
+          message: "No permissions",
+          path: ["transferOrganization"]
         }
       ]
     })
@@ -62,7 +62,7 @@ RSpec.describe "GraphQL - Transfer Organization Mutations", type: :request do
   it "You can't transfer to yourself" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             organizationId: @organization.id,
@@ -88,7 +88,7 @@ RSpec.describe "GraphQL - Transfer Organization Mutations", type: :request do
   it "You can't transfer to him if he is not a member of the organization" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             organizationId: @organization.id,
@@ -114,7 +114,7 @@ RSpec.describe "GraphQL - Transfer Organization Mutations", type: :request do
   it "Transfer organization successfully" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             organizationId: @organization.id,

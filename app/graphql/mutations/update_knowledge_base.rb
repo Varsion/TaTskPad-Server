@@ -3,7 +3,7 @@ module Mutations
     argument :id, ID, required: true
     argument :title, String, required: true
     argument :description, String, required: false
-    
+
     field :knowledge_base, Types::KnowledgeBaseType, null: true
     field :errors, [Types::Base::ModelError], null: true
 

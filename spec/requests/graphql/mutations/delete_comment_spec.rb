@@ -1,8 +1,7 @@
-
 require "rails_helper"
 
 RSpec.describe "GraphQL - Update Comment Mutations", type: :request do
-  before :each  do
+  before :each do
     @account = create(:account)
     @account_2 = create(:account)
     @organization = create(:organization)
@@ -27,7 +26,7 @@ RSpec.describe "GraphQL - Update Comment Mutations", type: :request do
   it "work!" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             id: @comment.id
@@ -40,7 +39,7 @@ RSpec.describe "GraphQL - Update Comment Mutations", type: :request do
       data: {
         deleteComment: {
           comment: {
-            content: @comment.content,
+            content: @comment.content
           }
         }
       }
@@ -50,7 +49,7 @@ RSpec.describe "GraphQL - Update Comment Mutations", type: :request do
   it "you can't delete other's comment" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             id: @comment.id

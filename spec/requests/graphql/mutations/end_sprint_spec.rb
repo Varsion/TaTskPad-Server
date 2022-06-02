@@ -32,7 +32,7 @@ RSpec.describe "GraphQL - End Sprint Mutations", type: :request do
   it "end sprint work" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             id: @sprint.id

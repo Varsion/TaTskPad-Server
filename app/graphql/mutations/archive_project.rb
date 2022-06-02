@@ -12,7 +12,7 @@ module Mutations
       raise GraphQL::ExecutionError, "No permissions" unless org.is_owner?(current_account) || org.is_admin?(current_account)
 
       project.archive!
-      { project: project }
+      {project: project}
     end
   end
 end

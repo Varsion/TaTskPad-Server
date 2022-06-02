@@ -10,9 +10,9 @@ module Mutations
       knowledge_base = KnowledgeBase.find_by(id: input[:id])
 
       raise GraphQL::ExecutionError, "No permissions" unless knowledge_base.project.organization.is_member?(current_account)
-      
+
       knowledge_base.archive!
-      { knowledge_base: knowledge_base }
+      {knowledge_base: knowledge_base}
     end
   end
 end

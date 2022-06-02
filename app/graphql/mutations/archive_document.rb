@@ -8,9 +8,9 @@ module Mutations
     def resolve(input)
       authenticate_user!
       document = Document.find_by(id: input[:id])
-      
+
       document.archive!
-      { document: document }
+      {document: document}
     end
   end
 end

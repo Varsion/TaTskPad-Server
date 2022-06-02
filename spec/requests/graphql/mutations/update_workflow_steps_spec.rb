@@ -34,18 +34,18 @@ RSpec.describe "GraphQL - Update Workflow Steps Mutations", type: :request do
   it "Work!" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             projectId: @project.id,
             workflowSteps: @current_workflow + [
               {
                 name: "hello",
-                description:"hello",
+                description: "hello"
               },
               {
                 name: "hello2",
-                description:"hello",
+                description: "hello"
               }
             ]
           }
@@ -58,11 +58,11 @@ RSpec.describe "GraphQL - Update Workflow Steps Mutations", type: :request do
       @current_workflow + [
         {
           name: "hello",
-          description:"hello",
+          description: "hello"
         }.as_json,
         {
           name: "hello2",
-          description:"hello",
+          description: "hello"
         }.as_json
       ]
     )

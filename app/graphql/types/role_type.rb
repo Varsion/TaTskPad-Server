@@ -1,4 +1,3 @@
-
 module Types
   class RoleType < Types::Base::Object
     field :id, ID, null: false
@@ -6,7 +5,7 @@ module Types
     field :description, String, null: false
     field :active, Boolean, null: false
     field :permissions, [Types::PermissionType], null: false
-    
+
     def permissions
       object.abilities
     end

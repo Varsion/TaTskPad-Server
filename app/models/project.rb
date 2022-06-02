@@ -39,21 +39,20 @@ class Project < ApplicationRecord
     validates :name, presence: true
     validates :type, presence: true
 
-    enum :type, in: { string: "string", text: "text", integer: "integer", boolean: "boolean" }, default: :string
+    enum :type, in: {string: "string", text: "text", integer: "integer", boolean: "boolean"}, default: :string
   end
 
   attribute :workflow_steps, WorkflowSteps.to_array_type
   attribute :customize_fields, CustomizeFields.to_array_type
 
-  validates :workflow_steps, store_model: { merge_errors: true }
-  validates :customize_fields, store_model: { merge_errors: true }
-
+  validates :workflow_steps, store_model: {merge_errors: true}
+  validates :customize_fields, store_model: {merge_errors: true}
 
   def init_workflow_steps
     self.workflow_steps = [
-      { name: "Todo", description: "to do" },
-      { name: "Doing", description: "Doing" },
-      { name: "Done", description: "Done" }
+      {name: "Todo", description: "to do"},
+      {name: "Doing", description: "Doing"},
+      {name: "Done", description: "Done"}
     ]
   end
 

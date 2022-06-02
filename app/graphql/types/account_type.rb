@@ -9,8 +9,8 @@ module Types
     field :organizations, [Types::OrganizationType], null: true
 
     def avatar
-      object.avatar.attached? ? 
-        Rails.application.routes.url_helpers.url_for(object.avatar) : 
+      object.avatar.attached? ?
+        Rails.application.routes.url_helpers.url_for(object.avatar) :
         "https://ui-avatars.com/api/?name=#{object.name}"
     end
   end

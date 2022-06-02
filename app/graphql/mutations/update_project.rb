@@ -11,7 +11,7 @@ module Mutations
 
     def resolve(input)
       authenticate_user!
-      
+
       project = Project.find_by(id: input[:project_id])
       org = project.organization
 
@@ -26,10 +26,10 @@ module Mutations
       project.upload_logo(input[:logo]) if project[:logo].present?
 
       if project.save && project.errors.blank?
-        { project: project }
+        {project: project}
       else
         errors = Types::Base::ModelError.errors_of(project)
-        { errors: errors }
+        {errors: errors}
       end
     end
   end

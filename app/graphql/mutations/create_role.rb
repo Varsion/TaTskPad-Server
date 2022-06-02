@@ -1,7 +1,7 @@
 module Mutations
   class CreateRole < Mutations::BaseMutation
     argument :organization_id, ID, required: true
-    argument :name, String, required: true, 
+    argument :name, String, required: true,
       prepare: ->(key_word, ctx) {
         key_word.downcase
       }

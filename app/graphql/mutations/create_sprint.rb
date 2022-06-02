@@ -5,7 +5,6 @@ module Mutations
     argument :version, String, required: true
     argument :bucket_id, ID, required: true
 
-
     field :sprint, Types::SprintType, null: true
     field :errors, [Types::Base::ModelError], null: true
 
@@ -17,10 +16,10 @@ module Mutations
       sprint = Sprint.new(input)
 
       if sprint.save && sprint.errors.blank?
-        { sprint: sprint }
+        {sprint: sprint}
       else
         errors = Types::Base::ModelError.errors_of(sprint)
-        { errors: errors }
+        {errors: errors}
       end
     end
   end

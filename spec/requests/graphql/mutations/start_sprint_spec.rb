@@ -32,7 +32,7 @@ RSpec.describe "GraphQL - Start Sprint Mutations", type: :request do
   it "start sprint work" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             id: @sprint.id
@@ -56,7 +56,7 @@ RSpec.describe "GraphQL - Start Sprint Mutations", type: :request do
     sprint = create(:sprint, project: @project, is_current: true, bucket: bucket)
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             id: @sprint.id

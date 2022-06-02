@@ -28,37 +28,37 @@ RSpec.describe "GraphQL - Verify Account Mutations", type: :request do
   it "Works!" do
     post "/graphql",
       params: {
-        query: query, 
+        query: query,
         variables: {
           input: {
             verifyCode: @account.verify_code
           }
         }
       }.to_json, headers: user_headers
-      expect(response.status).to eq 200
-      expect(response.body).to include_json({
-        data: {
-          verifyAccount: {
-            account: {
-              id: @account.id,
-              email: @account.email,
-              verified: true
-            }
+    expect(response.status).to eq 200
+    expect(response.body).to include_json({
+      data: {
+        verifyAccount: {
+          account: {
+            id: @account.id,
+            email: @account.email,
+            verified: true
           }
         }
-      })
+      }
+    })
   end
 
   it "Works! with invalid code" do
     post "/graphql",
-    params: {
-      query: query, 
-      variables: {
-        input: {
-          verifyCode: "123123"
+      params: {
+        query: query,
+        variables: {
+          input: {
+            verifyCode: "123123"
+          }
         }
-      }
-    }.to_json, headers: user_headers
+      }.to_json, headers: user_headers
     expect(response.status).to eq 200
     expect(response.body).to include_json({
       data: {
